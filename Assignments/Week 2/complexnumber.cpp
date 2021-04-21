@@ -24,7 +24,8 @@ class ComplexNumber {
    }
 };
 
-int main() {
+int main()
+{
   ComplexNumber c1("x4+y2i");
   cout << "x: " << c1.x << ",\ny: " << c1.y << ",\nz: " <<  c1.z << "\n";
   return 0;
