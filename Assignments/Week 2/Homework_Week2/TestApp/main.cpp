@@ -1,14 +1,19 @@
 #include "p1a_parser.h"
-#include "mainwindow.h"
+#include "triangle.h"
+#include "vertex.h"
+#include <iostream>
+#include <vector>
 #include <QApplication>
+using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
-    p1a_parser test;
+    vector<Vertex> points;
+    vector<Face> faces;
 
-    // Here is a test comment
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+    string filepoints = "D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Objects\\tetra.obj";
+    p1a_Parser test;
+    test.ReadData(filepoints, points, faces);
+
+    return 0;
 }
