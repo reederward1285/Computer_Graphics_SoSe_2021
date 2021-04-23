@@ -5,7 +5,10 @@
 class p1a_Parser
 {
 public:
-    p1a_Parser();
+    p1a_Parser()
+    {
+
+    }
 };
 
 #endif // P1A_PARSER_H
