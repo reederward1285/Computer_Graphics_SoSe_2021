@@ -10,10 +10,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    p1a_parser.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    p1a_parser.h
 
 FORMS += \
     mainwindow.ui
