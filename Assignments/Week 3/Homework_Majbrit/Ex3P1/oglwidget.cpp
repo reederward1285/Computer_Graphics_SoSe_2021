@@ -33,10 +33,9 @@ void ReadData( string fname){
     }
     string key;
     float x, y, z;
-    while( file){
+    while(file >> key >> x >> y >> z){
         //getline( file, line);
         //Output of the data for vertex and faces on the console
-        file >> key >> x >> y >> z;
         cout << key <<", "<< x <<", "<< y <<", "<< z << endl;
 
         //Saving the data in objects of the Vertex and Triangle class
@@ -239,7 +238,8 @@ void OGLWidget::initializeGL() // initializations to be called once
 
     InitLightingAndProjection(); // define light sources and projection
 //NEW
-    ReadData("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\3\\Ex3P1\\line.obj");
+    //ReadData("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\3\\Ex3P1\\line.obj");
+    ReadData("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Majbrit\\Ex3P1\\line.obj");
 }
 
 void OGLWidget::paintGL() // draw everything, to be called repeatedly
