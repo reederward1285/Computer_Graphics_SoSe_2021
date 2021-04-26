@@ -24,7 +24,7 @@ static double alpha = 45.0; // rotation angle
 //NEW
 
 
-void ReadData( string fname){ //parser
+void ReadData( string fname){
     ifstream file( fname);
     //Error message if data cannot be read in
     if (!file) {
@@ -102,6 +102,8 @@ void InitLightingAndProjection() // to be executed once before drawing
     //glFrustum( -10, 10, -8, 8, 2, 20); // perspective projektion
 }
 
+
+
 //---
 
 //NEW
@@ -167,7 +169,20 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 }
 
 
+void DrawLine() {
+    glBegin( GL_LINE_STRIP);
+
+    for( int i=0; i<points.size(); i++){
+        glVertex3f( points[i].x, points[i].y, points[i].z);  //v1
+    }
+    glEnd();
+}
+
+
+
 //---
+
+
 
 
 // define material color properties for front and back side
@@ -224,7 +239,7 @@ void OGLWidget::initializeGL() // initializations to be called once
 
     InitLightingAndProjection(); // define light sources and projection
 //NEW
-    ReadData("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 2\\Homework_Majbrit\\PreEx2new\\tetra.obj");
+    ReadData("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\3\\Ex3P1\\line.obj");
 }
 
 void OGLWidget::paintGL() // draw everything, to be called repeatedly
@@ -240,7 +255,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glLoadIdentity();				// Reset The Current Modelview Matrix
     glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
-    glRotated( alpha, 0, 3, 1);     // continuous rotation
+    //glRotated( alpha, 0, 3, 1);     // continuous rotation
     alpha += 5;
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
@@ -249,7 +264,9 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
 
     //NEW
     // draw a triangle mesh (here tetra)
-    DrawTriangleMesh();
+    //DrawTriangleMesh();
+
+    DrawLine();
 
 
     // make it appear (before this, it's hidden in the rear buffer)
