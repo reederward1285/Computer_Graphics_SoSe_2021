@@ -24,7 +24,7 @@ static double alpha = 45.0; // rotation angle
 //NEW
 
 
-void ReadData( string fname){
+void ReadData( string fname){ //parser
     ifstream file( fname);
     //Error message if data cannot be read in
     if (!file) {
@@ -102,34 +102,6 @@ void InitLightingAndProjection() // to be executed once before drawing
     //glFrustum( -10, 10, -8, 8, 2, 20); // perspective projektion
 }
 
-/*void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
-    // alocate memory for x and y coordinates on a circle
-    double *c = new double[ reso+1];
-    double *s = new double[ reso+1];
-
-    for( int i=0; i<=reso; i++){ // compute x and y coordinates of citcle
-        c[i] = cos( 2.0 * PI * i / reso );
-        s[i] = sin( 2.0 * PI * i / reso );
-        //cout << i << " " << c[i] << endl;
-    }
-
-    glBegin( GL_QUADS); // each 4 points define a polygon
-    for( int i=0; i<reso; i++){
-        glNormal3f( c[i], s[i], 0.0); // normal vector used for all consecutive points
-        glVertex3f( c[i], s[i], 3.0); // 2 points ...
-        glVertex3f( c[i], s[i], 0.0);
-
-        glNormal3f( c[i+1], s[i+1], 0.0); // another normal with two more points
-        glVertex3f( c[i+1], s[i+1], 0.0);
-        glVertex3f( c[i+1], s[i+1], 3.0);
-    }
-    glEnd(); // concludes GL_QUADS
-
-    delete[] c; // de-allocate space
-    delete[] s;
-}
-*/
-
 //---
 
 //NEW
@@ -195,10 +167,7 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 }
 
 
-
 //---
-
-
 
 
 // define material color properties for front and back side
@@ -255,7 +224,7 @@ void OGLWidget::initializeGL() // initializations to be called once
 
     InitLightingAndProjection(); // define light sources and projection
 //NEW
-    ReadData("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\PreEx2new\\tetra.obj");
+    ReadData("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 2\\Homework_Majbrit\\PreEx2new\\tetra.obj");
 }
 
 void OGLWidget::paintGL() // draw everything, to be called repeatedly
