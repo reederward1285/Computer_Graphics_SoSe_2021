@@ -13,13 +13,15 @@ SOURCES += \
     interpolating_cubic_subdivision.cpp \
     main.cpp \
     mainwindow.cpp \
-    obj_file_processing.cpp
+    obj_file_processing.cpp \
+    ogl_widget.cpp
 
 HEADERS += \
     chaikin.h \
     interpolating_cubic_subdivision.h \
     mainwindow.h \
-    obj_file_processing.h
+    obj_file_processing.h \
+    ogl_widget.h
 
 FORMS += \
     mainwindow.ui
