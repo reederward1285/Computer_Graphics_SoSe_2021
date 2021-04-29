@@ -1,7 +1,5 @@
 #include "oglwidget.h"
 #include <math.h>
-
-//NEW
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -9,7 +7,6 @@
 #include <vector>
 using namespace std;
 
-//NEW
 vector <Vertex> points;
 vector <Triangle> tris;
 vector <float> xpoints;
@@ -23,16 +20,8 @@ vector <float> xnewn;
 vector <float> ynewn;
 vector <float> znewn;
 
-
 #define PI 3.14159265358979323846
-
-
 //static double alpha = 45.0; // rotation angle
-
-
-//---
-
-//NEW
 
 
 void ReadData( string fname){
@@ -77,17 +66,6 @@ void ReadData( string fname){
 
 }
 
-
-
-
-
-
-
-//---
-
-
-
-
 // initialize Open GL lighting and projection matrix
 void InitLightingAndProjection() // to be executed once before drawing
 {
@@ -125,9 +103,6 @@ void InitLightingAndProjection() // to be executed once before drawing
 
 }
 
-
-
-//---
 void Chaikin2() {
     /*float v[points.size()];
     for(int i=0; i<points.size(); i++) {
@@ -229,7 +204,6 @@ void Chaikin2() {
 
 }
 
-
 void Chaikin() {
 
     int columns = xpoints.size();
@@ -322,7 +296,6 @@ void Chaikin() {
 
 }
 
-
 void DrawLine() {
     Chaikin();
     glBegin( GL_LINE_STRIP);
@@ -335,13 +308,6 @@ void DrawLine() {
     //~OGLWidget();
     //Chaikin();
 }
-
-
-
-//---
-
-
-
 
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){
@@ -369,8 +335,6 @@ void SetMaterialColor( int side, float r, float g, float b){
     cout <<"MatColor "<< endl;
 }
 
-
-
 OGLWidget::OGLWidget(QWidget *parent) // constructor
     : QOpenGLWidget(parent)
 {
@@ -391,15 +355,6 @@ OGLWidget::~OGLWidget() // destructor
 {
     cout <<"OGLWidget destructor "<< endl;
 }
-
-/*
-void OGLWidget::stepAnimation()
-{
-   // animstep++;    // Increase animation steps
-    //update();      // Trigger redraw of scene with paintGL
-    cout <<"stepAnimator "<< endl;
-}
-*/
 
 void OGLWidget::initializeGL() // initializations to be called once
 {
@@ -444,11 +399,3 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
 }
-/*
-void OGLWidget::resizeGL(int w, int h) // called when window size is changed
-{
-    // adjust viewport transform
-    glViewport(0,0,w,h);
-}
-*/
-
