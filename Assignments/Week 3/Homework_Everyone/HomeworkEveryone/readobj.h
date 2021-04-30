@@ -13,6 +13,7 @@ public:
     ReadObj();
 public:
     vector<vector<float>> ReadPoints( string fname);
+    void ReadTriangle( string fname);
 };
 
 #endif // READOBJ_H

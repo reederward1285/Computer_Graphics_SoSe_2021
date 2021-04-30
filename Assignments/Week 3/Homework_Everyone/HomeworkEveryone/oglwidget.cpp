@@ -1,103 +1,24 @@
 #include "oglwidget.h"
 #include <math.h>
-
-//NEW
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <string>
 #include <vector>
 #include "readobj.h"
-
+#include "chaikin.h"
 
 using namespace std;
 
-
-
 ReadObj read = *new ReadObj();
+Chaikin chai = *new Chaikin();
 
-vector <Vertex> points;
-vector <Triangle> tris;
-
-//needed
 vector <vector<float>> vecpoints;
-
-/*
-vector <float> xnew;
-vector <float> ynew;
-vector <float> znew;
-vector <float> xnewn;
-vector <float> ynewn;
-vector <float> znewn;
-*/
-
 
 #define PI 3.14159265358979323846
 void SetMaterialColor( int side, float r, float g, float b);
 
-
-
 //static double alpha = 45.0; // rotation angle
-
-
-//---
-
-//NEW
-
-/*
-void ReadData( string fname){
-    ifstream file( fname);
-    //Error message if data cannot be read in
-    if (!file) {
-        cout << "error opening file" << endl;
-        return;
-    }
-    string key;
-    float x, y, z;
-    while( file >> key >> x >> y >> z){
-        //getline( file, line);
-        //Output of the data for vertex and faces on the console
-
-        cout << key <<", "<< x <<", "<< y <<", "<< z << endl;
-
-        //Saving the data in objects of the Vertex and Triangle class
-        //Insert objects into the corresponding vectors
-        if (key.compare("v")==0) {
-            xpoints.push_back(x);
-            ypoints.push_back(y);
-            zpoints.push_back(z);
-            Vertex v = *new Vertex(x, y, z);
-            points.push_back(v);
-        } else {
-            Triangle t = *new Triangle(x, y, z);
-            tris.push_back(t);
-        }
-
-    }
-    vecpoints.push_back(xpoints);
-    vecpoints.push_back(ypoints);
-    vecpoints.push_back(zpoints);
-    file.close();
-
-    cout <<"ReadData"<< endl;
-
-    cout <<"xpoints "<< xpoints.size() << endl;
-
-
-
-}
-*/
-
-
-
-
-
-
-
-//---
-
-
-
 
 // initialize Open GL lighting and projection matrix
 void InitLightingAndProjection() // to be executed once before drawing
@@ -138,76 +59,7 @@ void InitLightingAndProjection() // to be executed once before drawing
 
 
 
-vector<vector<float>> Chaikin(vector<float> xold, vector<float> yold, vector<float> zold) {
-    //vector matrix for the points calculated in the algorithm
-    vector<vector<float>> xyznew;
-    vector <float> xnew;
-    vector <float> ynew;
-    vector <float> znew;
-
-    //---calculate mask---
-    //size of the matrix
-    int columns = xold.size();
-    int lines = (columns-1)*2;
-    float matrix[lines][columns];
-    //fill martrix with 0
-    for( int i=0; i<lines; i++) {
-        for( int j=0; j<columns; j++) {
-            matrix[i][j] = 0;
-        }
-    }
-    //fill center of the matrix
-    int c = columns-2;
-    int l = (lines-3)*2;
-    int i=2;
-    int j=1;
-    while( i<l) {
-        while(  j<c) {
-            matrix[i][j] = 0.75;
-            matrix[i][j+1] = 0.25;
-            matrix[i+1][j] = 0.25;
-            matrix[i+1][j+1] = 0.75;
-            j=j+1;
-            break;
-        }
-        i=i+2;
-    }
-    //fill first two and last two lines of the matrix
-    matrix[0][0] = 1.0;
-    matrix[1][1] = 0.5;
-    matrix[1][0] = 0.5;
-    matrix[lines-1][columns-1] = 1.0;
-    matrix[lines-2][columns-1] = 0.5;
-    matrix[lines-2][columns-2] = 0.5;
-
-    //---matrix multiplication---
-    float xproduct = 0;
-    float yproduct = 0;
-    float zproduct = 0;
-    for( int i=0; i<lines; i++) {
-        xproduct = 0;
-        yproduct = 0;
-        zproduct = 0;
-        for( int j=0; j<columns; j++) {
-            //calculate x,y and z of one new point
-            xproduct += matrix[i][j]*xold[j];
-            yproduct += matrix[i][j]*yold[j];
-            zproduct += matrix[i][j]*zold[j];
-        }
-        //insert new coordinates in vectors
-        xnew.push_back(xproduct);
-        ynew.push_back(yproduct);
-        znew.push_back(zproduct);
-    }
-    xyznew.push_back(xnew);
-    xyznew.push_back(ynew);
-    xyznew.push_back(znew);
-
-    //return calculated points
-    return xyznew;
-}
-
-void DrawLine() {
+void DrawLineChaikin() {
 
     //---Connecting the points---
     //set color of the line
@@ -225,7 +77,7 @@ void DrawLine() {
 
     //---first subdivision---
     //call Chaikin algorithm
-    newpoints = Chaikin(vecpoints[0], vecpoints[1], vecpoints[2]);
+    newpoints = chai.ChaikinAlg(vecpoints[0], vecpoints[1], vecpoints[2]);
     //set color of the line
     SetMaterialColor( 1, 1.0, .2, .2);
     //draw line
@@ -235,8 +87,10 @@ void DrawLine() {
     }
     glEnd();
 
+    //The subdivisions could also be called in a loop, here they are not, to set the colors individually.
+
     //---second subdivision---
-    newpoints = Chaikin(newpoints[0], newpoints[1], newpoints[2]);
+    newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, .2, .2, 1.0);
     glBegin( GL_LINE_STRIP);
     for( int i=0; i<newpoints[0].size(); i++){
@@ -245,7 +99,7 @@ void DrawLine() {
     glEnd();
 
     //---third subdivision---
-    newpoints = Chaikin(newpoints[0], newpoints[1], newpoints[2]);
+    newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, 1.0, 0.9, 0.2);
     glBegin( GL_LINE_STRIP);
     for( int i=0; i<newpoints[0].size(); i++){
@@ -253,13 +107,6 @@ void DrawLine() {
     }
     glEnd();
 }
-
-
-
-//---
-
-
-
 
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){
@@ -285,8 +132,6 @@ void SetMaterialColor( int side, float r, float g, float b){
     glMaterialf( mat, GL_SHININESS, 50.0); // Phong constant for the size of highlights
 
 }
-
-
 
 OGLWidget::OGLWidget(QWidget *parent) // constructor
     : QOpenGLWidget(parent)
@@ -324,7 +169,8 @@ void OGLWidget::initializeGL() // initializations to be called once
     initializeOpenGLFunctions();
 
     InitLightingAndProjection(); // define light sources and projection
-//NEW
+
+    //read points
     vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\3\\HomeworkEveryone\\Dot.obj");
 }
 
@@ -345,18 +191,15 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     //glRotated( alpha, 0, 3, 1);     // continuous rotation
     //alpha += 5;
 
-
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
     SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
-
-    //NEW
     // draw a triangle mesh (here tetra)
     //DrawTriangleMesh();
 
-    DrawLine();
-
+    //draw lines with Chaikin algorithm
+    DrawLineChaikin();
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
