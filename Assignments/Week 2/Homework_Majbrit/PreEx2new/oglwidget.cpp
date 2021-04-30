@@ -33,10 +33,10 @@ void ReadData( string fname){ //parser
     }
     string key;
     float x, y, z;
-    while( file){
+    while( file >> key >> x >> y >> z){
         //getline( file, line);
         //Output of the data for vertex and faces on the console
-        file >> key >> x >> y >> z;
+
         cout << key <<", "<< x <<", "<< y <<", "<< z << endl;
 
         //Saving the data in objects of the Vertex and Triangle class
