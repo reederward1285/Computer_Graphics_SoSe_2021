@@ -7,11 +7,13 @@
 #include <vector>
 #include "readobj.h"
 #include "chaikin.h"
+#include "interpolatingcubicsubdivision.h"
 
 using namespace std;
 
 ReadObj read = *new ReadObj();
 Chaikin chai = *new Chaikin();
+InterpolatingCubicSubdivision cubic = *new InterpolatingCubicSubdivision();
 
 vector <vector<float>> vecpoints;
 
@@ -108,6 +110,55 @@ void DrawLineChaikin() {
     glEnd();
 }
 
+void DrawLineCubic() {
+
+    //---Connecting the points---
+    //set color of the line
+    SetMaterialColor( 1, 0.2, 1.0, .2);
+    //draw line
+    glBegin( GL_LINE_STRIP);
+    for( int i=0; i<vecpoints[0].size(); i++){
+        //glColor3f(0,1,0);
+        glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
+    }
+    glEnd();
+
+    //vector matrix for the points calculated in the algorithm
+    vector<vector<float>> newpoints;
+
+    //---first subdivision---
+    //call Chaikin algorithm
+    newpoints = cubic.CubicAlg(vecpoints[0], vecpoints[1], vecpoints[2]);
+    //set color of the line
+    SetMaterialColor( 1, 1.0, .2, .2);
+    //draw line
+    glBegin( GL_LINE_STRIP);
+    for( int i=0; i<newpoints[0].size(); i++){
+        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
+    }
+    glEnd();
+
+    //The subdivisions could also be called in a loop, here they are not, to set the colors individually.
+
+    //---second subdivision---
+    newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
+    SetMaterialColor( 1, .2, .2, 1.0);
+    glBegin( GL_LINE_STRIP);
+    for( int i=0; i<newpoints[0].size(); i++){
+        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
+    }
+    glEnd();
+
+    //---third subdivision---
+    newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
+    SetMaterialColor( 1, 1.0, 0.9, 0.2);
+    glBegin( GL_LINE_STRIP);
+    for( int i=0; i<newpoints[0].size(); i++){
+        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
+    }
+    glEnd();
+}
+
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){
     float	amb[4], dif[4], spe[4];
@@ -132,6 +183,8 @@ void SetMaterialColor( int side, float r, float g, float b){
     glMaterialf( mat, GL_SHININESS, 50.0); // Phong constant for the size of highlights
 
 }
+
+
 
 OGLWidget::OGLWidget(QWidget *parent) // constructor
     : QOpenGLWidget(parent)
@@ -195,11 +248,12 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
-    // draw a triangle mesh (here tetra)
-    //DrawTriangleMesh();
-
     //draw lines with Chaikin algorithm
-    DrawLineChaikin();
+    //DrawLineChaikin();
+
+    //draw lines with Cubic algorithm
+    DrawLineCubic();
+
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
