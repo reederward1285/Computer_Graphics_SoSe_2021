@@ -78,7 +78,7 @@ void DrawLineChaikin() {
     SetMaterialColor( 1, 0.2, 1.0, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<vecpoints[0].size(); i++){
+    for( unsigned int i=0; i<vecpoints[0].size(); i++){
         glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
     }
     glEnd();
@@ -96,7 +96,7 @@ void DrawLineChaikin() {
     SetMaterialColor( 1, 1.0, .2, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -107,7 +107,7 @@ void DrawLineChaikin() {
     newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, .2, .2, 1.0);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -116,7 +116,7 @@ void DrawLineChaikin() {
     newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, 1.0, 0.9, 0.2);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -129,7 +129,7 @@ void DrawLineCubic() {
     SetMaterialColor( 1, 0.2, 1.0, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<vecpoints[0].size(); i++){
+    for( unsigned int i=0; i<vecpoints[0].size(); i++){
         //glColor3f(0,1,0);
         glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
     }
@@ -145,7 +145,7 @@ void DrawLineCubic() {
     SetMaterialColor( 1, 1.0, .2, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -156,7 +156,7 @@ void DrawLineCubic() {
     newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, .2, .2, 1.0);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -165,7 +165,7 @@ void DrawLineCubic() {
     newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, 1.0, 0.9, 0.2);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
