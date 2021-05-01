@@ -28,4 +28,5 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 DISTFILES += \
+    README \
     tetra.obj

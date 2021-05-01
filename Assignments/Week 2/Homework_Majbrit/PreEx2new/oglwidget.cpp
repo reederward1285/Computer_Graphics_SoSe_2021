@@ -15,7 +15,7 @@
 //NEW
 #include <iostream>
 #include <iomanip>
-#include <fstream>
+#include <fstream>2
 #include <string>
 #include <vector>
 using namespace std;
@@ -177,9 +177,7 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 
 }
 
-
 //---
-
 
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){

@@ -1,0 +1,15 @@
+To use this software:
+
+    1. Define path of file that should be read in olgwidget.cpp line 239.
+     -> Put the absolute path of your file in like ReadData("C:\\Users\\$USER\\Documents\\...\\ .obj")
+
+    2. Stay on olgwidget.cpp and click <execute> to start the software.
+
+What you can choose:
+
+    1. In file olgwidget.cpp are written two functions:
+        a. [line 269] DrawLineChaikin() what is our solution for Problem 2.
+        b. [line 272] DrawLineCubic() what is our solution for Problem 3.
+    Whatever you want to see, just comment/uncomment it and click on execute.
+
+

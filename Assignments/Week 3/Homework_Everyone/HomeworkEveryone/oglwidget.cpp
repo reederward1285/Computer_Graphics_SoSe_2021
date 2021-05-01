@@ -71,7 +71,6 @@ void InitLightingAndProjection() // to be executed once before drawing
 }
 
 
-
 void DrawLineChaikin() {
 
     //---Connecting the points---
@@ -79,13 +78,16 @@ void DrawLineChaikin() {
     SetMaterialColor( 1, 0.2, 1.0, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<vecpoints[0].size(); i++){
+    for( unsigned int i=0; i<vecpoints[0].size(); i++){
         glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
     }
     glEnd();
 
     //vector matrix for the points calculated in the algorithm
     vector<vector<float>> newpoints;
+
+    // Loop to calculate subdivisions
+    //firstCalc
 
     //---first subdivision---
     //call Chaikin algorithm
@@ -94,7 +96,7 @@ void DrawLineChaikin() {
     SetMaterialColor( 1, 1.0, .2, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -105,7 +107,7 @@ void DrawLineChaikin() {
     newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, .2, .2, 1.0);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -114,7 +116,7 @@ void DrawLineChaikin() {
     newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, 1.0, 0.9, 0.2);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -127,7 +129,7 @@ void DrawLineCubic() {
     SetMaterialColor( 1, 0.2, 1.0, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<vecpoints[0].size(); i++){
+    for( unsigned int i=0; i<vecpoints[0].size(); i++){
         //glColor3f(0,1,0);
         glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
     }
@@ -143,7 +145,7 @@ void DrawLineCubic() {
     SetMaterialColor( 1, 1.0, .2, .2);
     //draw line
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -154,7 +156,7 @@ void DrawLineCubic() {
     newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, .2, .2, 1.0);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -163,7 +165,7 @@ void DrawLineCubic() {
     newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
     SetMaterialColor( 1, 1.0, 0.9, 0.2);
     glBegin( GL_LINE_STRIP);
-    for( int i=0; i<newpoints[0].size(); i++){
+    for( unsigned int i=0; i<newpoints[0].size(); i++){
         glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
     }
     glEnd();
@@ -191,40 +193,21 @@ void SetMaterialColor( int side, float r, float g, float b){
     glMaterialfv( mat, GL_DIFFUSE, dif);
     glMaterialfv( mat, GL_SPECULAR, spe);
     glMaterialf( mat, GL_SHININESS, 50.0); // Phong constant for the size of highlights
-
 }
-
 
 
 OGLWidget::OGLWidget(QWidget *parent) // constructor
     : QOpenGLWidget(parent)
 {
-    /*
-    // Setup the animation timer to fire every x msec
-    animtimer = new QTimer(this);
-    animtimer->start( 50 );
-
-    // Everytime the timer fires, the animation is going one step forward
-    connect(animtimer, SIGNAL(timeout()), this, SLOT(stepAnimation()));
-
-    animstep = 0;
-    */
     cout <<"OGLWidget "<< endl;
 }
+
 
 OGLWidget::~OGLWidget() // destructor
 {
     cout <<"OGLWidget destructor "<< endl;
 }
 
-/*
-void OGLWidget::stepAnimation()
-{
-   // animstep++;    // Increase animation steps
-    //update();      // Trigger redraw of scene with paintGL
-    cout <<"stepAnimator "<< endl;
-}
-*/
 
 void OGLWidget::initializeGL() // initializations to be called once
 {
@@ -239,11 +222,7 @@ void OGLWidget::initializeGL() // initializations to be called once
     vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
 }
 
-/**
- * Image associated with this map.
- *
- * @exceptsafe Shall not throw exceptions.
- */
+
 void OGLWidget::paintGL() // draw everything, to be called repeatedly
 {
     //cout <<"paintGL "<< endl;
@@ -266,20 +245,12 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw lines with Chaikin algorithm
-    //DrawLineChaikin();
+    DrawLineChaikin();
 
     //draw lines with Cubic algorithm
-    DrawLineCubic();
-
+    //DrawLineCubic();
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
 }
-/*
-void OGLWidget::resizeGL(int w, int h) // called when window size is changed
-{
-    // adjust viewport transform
-    glViewport(0,0,w,h);
-}
-*/
 

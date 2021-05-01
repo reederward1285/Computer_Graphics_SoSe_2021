@@ -39,4 +39,5 @@ FORMS    += mainwindow.ui
 
 DISTFILES += \
     Dot.obj \
+    README \
     line.obj
