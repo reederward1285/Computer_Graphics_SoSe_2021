@@ -266,10 +266,10 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw lines with Chaikin algorithm
-    //DrawLineChaikin();
+    DrawLineChaikin();
 
     //draw lines with Cubic algorithm
-    DrawLineCubic();
+    //DrawLineCubic();
 
 
     // make it appear (before this, it's hidden in the rear buffer)
