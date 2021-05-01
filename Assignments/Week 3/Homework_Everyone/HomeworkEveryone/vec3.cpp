@@ -1,10 +1,10 @@
-////////////////////////////////////////////////////////////////////
-// FILE:        vec3.cpp
-//
-// AUTHOR:      Martin Bertram
-//
-// DESCRIPTION: a vector class to represent 3-D points and vectors
-////////////////////////////////////////////////////////////////////
+/**
+ * @file vec3.cpp
+ *
+ * @brief a vector class to represent 3-D points and vectors
+ *
+ * @author Martin Bertram
+ */
 
 #include "vec3.hpp"
 

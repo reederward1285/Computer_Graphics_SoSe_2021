@@ -1,3 +1,14 @@
+/**
+ * @file olgwidget.cpp
+ *
+ * @author Majbrit Schoettner
+ * Contact: mshoettner@stud.hs-bremen.de
+ * @author Reeder Ward
+ * Contact: rward@stud.hs-bremen.de
+ * @author David Melamed
+ * Contact: dmelamed@stud.hs-bremen.de
+ */
+
 #include "oglwidget.h"
 #include <math.h>
 #include <iostream>
@@ -69,7 +80,6 @@ void DrawLineChaikin() {
     //draw line
     glBegin( GL_LINE_STRIP);
     for( int i=0; i<vecpoints[0].size(); i++){
-        //glColor3f(0,1,0);
         glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
     }
     glEnd();
@@ -225,9 +235,15 @@ void OGLWidget::initializeGL() // initializations to be called once
 
     //read points
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\3\\HomeworkEveryone\\Dot.obj");
-    vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
+    //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
+    vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
 }
 
+/**
+ * Image associated with this map.
+ *
+ * @exceptsafe Shall not throw exceptions.
+ */
 void OGLWidget::paintGL() // draw everything, to be called repeatedly
 {
     //cout <<"paintGL "<< endl;

@@ -1,0 +1,12 @@
+release/main.o
+release/chaikin.o
+release/interpolatingcubicsubdivision.o
+release/mainwindow.o
+release/objfileprocessing.o
+release/oglwidget.o
+release/readobj.o
+release/triangle.o
+release/vec3.o
+release/vertex.o
+release/moc_mainwindow.o
+release/moc_oglwidget.o
