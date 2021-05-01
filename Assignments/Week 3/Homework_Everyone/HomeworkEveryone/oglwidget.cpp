@@ -71,7 +71,6 @@ void InitLightingAndProjection() // to be executed once before drawing
 }
 
 
-
 void DrawLineChaikin() {
 
     //---Connecting the points---
@@ -86,6 +85,9 @@ void DrawLineChaikin() {
 
     //vector matrix for the points calculated in the algorithm
     vector<vector<float>> newpoints;
+
+    // Loop to calculate subdivisions
+    //firstCalc
 
     //---first subdivision---
     //call Chaikin algorithm
@@ -191,40 +193,21 @@ void SetMaterialColor( int side, float r, float g, float b){
     glMaterialfv( mat, GL_DIFFUSE, dif);
     glMaterialfv( mat, GL_SPECULAR, spe);
     glMaterialf( mat, GL_SHININESS, 50.0); // Phong constant for the size of highlights
-
 }
-
 
 
 OGLWidget::OGLWidget(QWidget *parent) // constructor
     : QOpenGLWidget(parent)
 {
-    /*
-    // Setup the animation timer to fire every x msec
-    animtimer = new QTimer(this);
-    animtimer->start( 50 );
-
-    // Everytime the timer fires, the animation is going one step forward
-    connect(animtimer, SIGNAL(timeout()), this, SLOT(stepAnimation()));
-
-    animstep = 0;
-    */
     cout <<"OGLWidget "<< endl;
 }
+
 
 OGLWidget::~OGLWidget() // destructor
 {
     cout <<"OGLWidget destructor "<< endl;
 }
 
-/*
-void OGLWidget::stepAnimation()
-{
-   // animstep++;    // Increase animation steps
-    //update();      // Trigger redraw of scene with paintGL
-    cout <<"stepAnimator "<< endl;
-}
-*/
 
 void OGLWidget::initializeGL() // initializations to be called once
 {
@@ -239,11 +222,7 @@ void OGLWidget::initializeGL() // initializations to be called once
     vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
 }
 
-/**
- * Image associated with this map.
- *
- * @exceptsafe Shall not throw exceptions.
- */
+
 void OGLWidget::paintGL() // draw everything, to be called repeatedly
 {
     //cout <<"paintGL "<< endl;
@@ -271,15 +250,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     //draw lines with Cubic algorithm
     //DrawLineCubic();
 
-
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
 }
-/*
-void OGLWidget::resizeGL(int w, int h) // called when window size is changed
-{
-    // adjust viewport transform
-    glViewport(0,0,w,h);
-}
-*/
 
