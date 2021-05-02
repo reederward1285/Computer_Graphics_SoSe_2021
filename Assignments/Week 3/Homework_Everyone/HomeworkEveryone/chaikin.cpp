@@ -23,7 +23,7 @@ Chaikin::Chaikin()
 
 }
 
-vector<vector<float>> Chaikin:: ChaikinAlg(vector<float> xold, vector<float> yold, vector<float> zold) {
+vector<vector<float>> Chaikin:: chaikinAlg(vector<float> xold, vector<float> yold, vector<float> zold) {
     //vector matrix for the points calculated in the algorithm
     vector<vector<float>> xyznew;
     vector <float> xnew;

@@ -27,11 +27,17 @@ Chaikin chai = *new Chaikin();
 InterpolatingCubicSubdivision cubic = *new InterpolatingCubicSubdivision();
 
 vector <vector<float>> vecpoints;
+//vector <vector<float>> allPoints;
+float colorValues[3][4] = // Values with colors for SetMaterialColor()
+{
+    {1, 1.0, .2, .2},
+    {1, .2, .2, 1.0},
+    {1, 1.0, 0.9, 0.2}
+};
+
 
 #define PI 3.14159265358979323846
 void SetMaterialColor( int side, float r, float g, float b);
-
-//static double alpha = 45.0; // rotation angle
 
 // initialize Open GL lighting and projection matrix
 void InitLightingAndProjection() // to be executed once before drawing
@@ -77,7 +83,7 @@ void DrawLineChaikin() {
     //set color of the line
     SetMaterialColor( 1, 0.2, 1.0, .2);
     //draw line
-    glBegin( GL_LINE_STRIP);
+    glBegin( GL_LINE_STRIP); // glBegin()
     for( unsigned int i=0; i<vecpoints[0].size(); i++){
         glVertex3f( vecpoints[0][i], vecpoints[1][i], vecpoints[2][i]);
     }
@@ -85,41 +91,24 @@ void DrawLineChaikin() {
 
     //vector matrix for the points calculated in the algorithm
     vector<vector<float>> newpoints;
+    newpoints.insert(newpoints.begin(), vecpoints.begin(), vecpoints.end());
 
-    // Loop to calculate subdivisions
-    //firstCalc
+// Subdivison-loop
+    for(int x=0;x<3;x++)  // loop 3 times for three lines
+        {
+            //call Chaikin algorithm
+            newpoints = chai.chaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
+            //set color of the line
+            SetMaterialColor(colorValues[x][0], colorValues[x][1], colorValues[x][2], colorValues[x][3]);
+            //draw line
+            glBegin( GL_LINE_STRIP);
 
-    //---first subdivision---
-    //call Chaikin algorithm
-    newpoints = chai.ChaikinAlg(vecpoints[0], vecpoints[1], vecpoints[2]);
-    //set color of the line
-    SetMaterialColor( 1, 1.0, .2, .2);
-    //draw line
-    glBegin( GL_LINE_STRIP);
-    for( unsigned int i=0; i<newpoints[0].size(); i++){
-        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
-    }
-    glEnd();
-
-    //The subdivisions could also be called in a loop, here they are not, to set the colors individually.
-
-    //---second subdivision---
-    newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
-    SetMaterialColor( 1, .2, .2, 1.0);
-    glBegin( GL_LINE_STRIP);
-    for( unsigned int i=0; i<newpoints[0].size(); i++){
-        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
-    }
-    glEnd();
-
-    //---third subdivision---
-    newpoints = chai.ChaikinAlg(newpoints[0], newpoints[1], newpoints[2]);
-    SetMaterialColor( 1, 1.0, 0.9, 0.2);
-    glBegin( GL_LINE_STRIP);
-    for( unsigned int i=0; i<newpoints[0].size(); i++){
-        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
-    }
-    glEnd();
+            for( unsigned int i=0; i<newpoints[0].size(); i++)
+            {
+                glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
+            }
+            glEnd();
+        }
 }
 
 void DrawLineCubic() {
@@ -137,38 +126,24 @@ void DrawLineCubic() {
 
     //vector matrix for the points calculated in the algorithm
     vector<vector<float>> newpoints;
+    newpoints.insert(newpoints.begin(), vecpoints.begin(), vecpoints.end());
 
-    //---first subdivision---
-    //call Chaikin algorithm
-    newpoints = cubic.CubicAlg(vecpoints[0], vecpoints[1], vecpoints[2]);
-    //set color of the line
-    SetMaterialColor( 1, 1.0, .2, .2);
-    //draw line
-    glBegin( GL_LINE_STRIP);
-    for( unsigned int i=0; i<newpoints[0].size(); i++){
-        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
-    }
-    glEnd();
+// Subdivison-loop
+    for(int x=0;x<3;x++)  // loop 3 times for three lines
+        {
+            //call Chaikin algorithm
+            newpoints = cubic.cubicAlg(newpoints[0], newpoints[1], newpoints[2]);
+            //set color of the line
+            SetMaterialColor(colorValues[x][0], colorValues[x][1], colorValues[x][2], colorValues[x][3]);
+            //draw line
+            glBegin( GL_LINE_STRIP);
 
-    //The subdivisions could also be called in a loop, here they are not, to set the colors individually.
-
-    //---second subdivision---
-    newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
-    SetMaterialColor( 1, .2, .2, 1.0);
-    glBegin( GL_LINE_STRIP);
-    for( unsigned int i=0; i<newpoints[0].size(); i++){
-        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
-    }
-    glEnd();
-
-    //---third subdivision---
-    newpoints = cubic.CubicAlg(newpoints[0], newpoints[1], newpoints[2]);
-    SetMaterialColor( 1, 1.0, 0.9, 0.2);
-    glBegin( GL_LINE_STRIP);
-    for( unsigned int i=0; i<newpoints[0].size(); i++){
-        glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
-    }
-    glEnd();
+            for( unsigned int i=0; i<newpoints[0].size(); i++)
+            {
+                glVertex3f( newpoints[0][i], newpoints[1][i], newpoints[2][i]);
+            }
+            glEnd();
+        }
 }
 
 // define material color properties for front and back side
@@ -245,10 +220,10 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw lines with Chaikin algorithm
-    DrawLineChaikin();
+    //DrawLineChaikin();
 
     //draw lines with Cubic algorithm
-    //DrawLineCubic();
+    DrawLineCubic();
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();

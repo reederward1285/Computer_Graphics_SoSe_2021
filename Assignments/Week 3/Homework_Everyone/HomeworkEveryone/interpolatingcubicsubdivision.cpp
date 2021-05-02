@@ -23,7 +23,7 @@ InterpolatingCubicSubdivision::InterpolatingCubicSubdivision()
 
 }
 
-vector<vector<float>> InterpolatingCubicSubdivision::CubicAlg(vector<float> xold, vector<float> yold, vector<float> zold) {
+vector<vector<float>> InterpolatingCubicSubdivision::cubicAlg(vector<float> xold, vector<float> yold, vector<float> zold) {
     //vector matrix for the points calculated in the algorithm
     vector<vector<float>> xyznew;
     vector <float> xnew;
