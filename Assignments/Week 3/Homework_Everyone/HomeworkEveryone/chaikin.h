@@ -26,7 +26,7 @@ class Chaikin
 public:
     Chaikin();
 public:
-    vector<vector<float>> ChaikinAlg(vector<float> xold, vector<float> yold, vector<float> zold);
+    vector<vector<float>> chaikinAlg(vector<float> xold, vector<float> yold, vector<float> zold);
 };
 
 #endif // CHAIKIN_H
