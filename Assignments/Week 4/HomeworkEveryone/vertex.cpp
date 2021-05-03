@@ -33,9 +33,6 @@ Vertex::Vertex( float point[3])
     xyz[2] = point[2];
 }
 
-<<<<<<< HEAD
-void Vertex::print(string description)
-=======
 Vertex operator+(Vertex a, Vertex b)
 {
     return Vertex(a.xyz[0] + b.xyz[0], a.xyz[1] + b.xyz[1], a.xyz[2] + b.xyz[2]);
@@ -46,8 +43,8 @@ Vertex operator-(Vertex a, Vertex b)
     return Vertex(a.xyz[0] - b.xyz[0], a.xyz[1] - b.xyz[1], a.xyz[2] - b.xyz[2]);
 }
 
-void Vertex::print(string description = "Vertex = ")
->>>>>>> main
+void Vertex::print(string description)
+
 {
     cout << description << "[ " << xyz[0] << "; " << xyz[1] << "; " << xyz[2] << " ]" << endl;
 }

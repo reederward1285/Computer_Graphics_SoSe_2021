@@ -20,7 +20,6 @@ public:
     // class members
     float xyz[3];
     int w;
-<<<<<<< HEAD
     // class constructor
     Vertex();
     Vertex(float x, float y, float z);
@@ -31,16 +30,9 @@ public:
     Vertex friend operator* (float a, Vertex b); // product between scalat and vector
     Vertex friend operator* (Vertex b, float a); // mirrored calc above
     Vertex friend operator* (Vertex a, Vertex b); // scalar product
-=======
-    
-    Vertex();
-    Vertex(float x, float y, float z);
-    Vertex( float point[3]);
     
     friend Vertex operator+(Vertex a, Vertex b);
     friend Vertex operator-(Vertex a, Vertex b);
-    void print(string description);
->>>>>>> main
 };
 
 #endif // VERTEX_H
