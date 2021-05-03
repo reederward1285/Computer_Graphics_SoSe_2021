@@ -54,13 +54,12 @@ void Vertex::print(string description )
  * @param b is second vector
  * @return c is result vector
  */
-Vertex operator* (Vertex a, Vertex b)
+float operator* (Vertex a, Vertex b)
 {
-    Vertex c = Vertex(
-                        a.xyz[0] * b.xyz[0],
-                        a.xyz[1] * b.xyz[1],
-                        a.xyz[2] * b.xyz[2]
-                     );
+    float c = a.xyz[0] * b.xyz[0] +
+              a.xyz[1] * b.xyz[1] +
+              a.xyz[2] * b.xyz[2];
+
     return c;
 }
 
@@ -88,9 +87,7 @@ Vertex operator* (float s, Vertex b)
  */
 Vertex operator* (Vertex b, float s)
 {
-    Vertex c = Vertex(
-                        s*b
-                    );
+    Vertex c = Vertex(s*b);
     return c;
 }
 

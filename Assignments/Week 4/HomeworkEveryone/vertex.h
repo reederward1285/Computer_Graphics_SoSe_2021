@@ -31,7 +31,7 @@ public:
 
     friend Vertex operator+ (Vertex a, Vertex b);
     friend Vertex operator- (Vertex a, Vertex b);
-    friend Vertex operator* (Vertex a, Vertex b);
+    friend float operator* (Vertex a, Vertex b);
 
     friend Vertex operator* (float s, Vertex b);
     friend Vertex operator* (Vertex a, float s);
