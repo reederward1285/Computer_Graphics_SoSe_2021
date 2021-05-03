@@ -226,13 +226,6 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     //draw lines with Cubic algorithm
     //DrawLineCubic();
 
-    // Test Vertex-operators
-    Vertex myVertex = Vertex(3, 5, 1);
-    Vertex otherVertex = Vertex(2, 5, 3);
-    //Vertex res = myVertex * otherVertex;
-    Vertex skalarRes = myVertex * 4.7;
-    skalarRes.print();
-
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
 }
