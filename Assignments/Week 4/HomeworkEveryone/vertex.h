@@ -30,6 +30,7 @@ public:
     void print(string description= "Vertex = ");
 
     friend Vertex operator%(Vertex a, Vertex b);
+    friend Vertex operator-(Vertex a, Vertex b);
 };
 
 #endif // VERTEX_H

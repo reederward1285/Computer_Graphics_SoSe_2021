@@ -40,4 +40,5 @@ FORMS    += mainwindow.ui
 DISTFILES += \
     Dot.obj \
     README \
-    line.obj
+    line.obj \
+    tetra.obj

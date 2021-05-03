@@ -20,13 +20,18 @@
 #include "vertex.h"
 using namespace std;
 
-vector<Triangle> tris;
-vector<Vertex> points;
 
 ReadObj::ReadObj()
 {
 
 }
+ReadObj::ReadObj(vector<Triangle> tris, vector<Vertex> points)
+{
+    this->tris = tris;
+    this->points = points;
+
+}
+
 
 vector<vector<float>> ReadObj:: ReadPoints( string fname){
     vector<vector<float>> vecpoints;
@@ -98,6 +103,18 @@ void ReadObj:: ReadTriangle( string fname){
 
     cout <<"ReadTriangle"<< endl;
 }
+
+vector<Vertex> ReadObj::getPoints()
+{
+    return points;
+}
+
+
+vector<Triangle> ReadObj::getTris()
+{
+    return tris;
+}
+
 
 
 

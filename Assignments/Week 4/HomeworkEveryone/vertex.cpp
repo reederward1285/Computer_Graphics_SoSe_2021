@@ -47,3 +47,13 @@ Vertex operator%(Vertex a, Vertex b)
 
     return c;
 }
+
+Vertex operator-(Vertex a, Vertex b)
+{
+    Vertex c;
+    c.xyz[0] = a.xyz[0] - b.xyz[0];
+    c.xyz[1] = a.xyz[1] - b.xyz[1];
+    c.xyz[2] = a.xyz[2] - b.xyz[2];
+
+    return c;
+}
