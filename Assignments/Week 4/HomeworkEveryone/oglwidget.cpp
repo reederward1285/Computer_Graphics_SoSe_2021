@@ -22,7 +22,12 @@
 
 using namespace std;
 
-ReadObj read = *new ReadObj();
+
+static double alpha = 45.0; // rotation angle
+vector<Triangle> tris;
+vector<Vertex> points;
+
+ReadObj read = ReadObj();
 Chaikin chai = *new Chaikin();
 InterpolatingCubicSubdivision cubic = *new InterpolatingCubicSubdivision();
 
@@ -73,6 +78,51 @@ void InitLightingAndProjection() // to be executed once before drawing
     glLoadIdentity(); // reset matrix to identity (otherwise existing matrix will be multiplied with)
     glOrtho( -15, 15, -10, 10, -20, 20); // orthogonal projection (xmin xmax ymin ymax zmin zmax)
     //glFrustum( -10, 10, -8, 8, 2, 20); // perspective projektion
+
+}
+
+void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
+
+    /*
+    for (int i=0; i<tris.size(); i++){
+        tris[i].print();
+    }
+    */
+
+    glBegin( GL_TRIANGLES); // each 3 points define a triangle
+    //Variables
+    //for indeces of the vertexes
+    int t1 = 0;
+    int t2 = 0;
+    int t3 = 0;
+
+    //for normal vector
+    Vertex normal;
+    //for edge vector
+    Vertex edge1;
+    Vertex edge2;
+
+    for(unsigned int i=0; i<tris.size(); i++){
+        //read indices
+        t1 = tris[i].iv[0] -1;
+        t2 = tris[i].iv[1] -1;
+        t3 = tris[i].iv[2] -1;
+
+        //Calculate vectors of the edges
+        edge1 = points[t1]-points[t3];
+        edge2 = points[t2]-points[t3];
+
+        //Calculate normal vector
+        normal = edge1%edge2;
+
+        //draw tetra
+        glNormal3fv( normal.xyz); // normal vector used for all consecutive points
+        glVertex3fv( points[t1].xyz); //
+        glVertex3fv( points[t2].xyz);
+        glVertex3fv( points[t3].xyz);
+
+    }
+    glEnd(); // concludes
 
 }
 
@@ -146,6 +196,13 @@ void DrawLineCubic() {
         }
 }
 
+
+void OGLWidget::stepAnimation()
+{
+    animstep++;    // Increase animation steps
+    update();      // Trigger redraw of scene with paintGL
+}
+
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){
     float	amb[4], dif[4], spe[4];
@@ -174,9 +231,15 @@ void SetMaterialColor( int side, float r, float g, float b){
 OGLWidget::OGLWidget(QWidget *parent) // constructor
     : QOpenGLWidget(parent)
 {
-    cout <<"OGLWidget "<< endl;
-}
+    // Setup the animation timer to fire every x msec
+    animtimer = new QTimer(this);
+    animtimer->start( 50 );
 
+    // Everytime the timer fires, the animation is going one step forward
+    connect(animtimer, SIGNAL(timeout()), this, SLOT(stepAnimation()));
+
+    animstep = 0;
+}
 
 OGLWidget::~OGLWidget() // destructor
 {
@@ -192,7 +255,9 @@ void OGLWidget::initializeGL() // initializations to be called once
     InitLightingAndProjection(); // define light sources and projection
 
     //read points
-
+    read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\tetra.obj" );
+    tris = read.getTris();
+    points = read.getPoints();
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
     vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
@@ -214,8 +279,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glLoadIdentity();				// Reset The Current Modelview Matrix
     glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
-    //glRotated( alpha, 0, 3, 1);     // continuous rotation
-    //alpha += 5;
+    glRotated( alpha, 0, 3, 1);     // continuous rotation
+    alpha += 5;
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
     SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
@@ -225,10 +290,27 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     //DrawLineChaikin();
 
     //draw lines with Cubic algorithm
-    DrawLineCubic();
+    //DrawLineCubic();
+
+    // draw a triangle mesh (here tetra)
+    DrawTriangleMesh();
+
+
+    //test
+    /*
+    Vertex ik = Vertex(2,3,4);
+    Vertex jk = Vertex(3.0,2.3,2);
+    Vertex k = ik%jk;
+    k.print();
+    */
 
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
+}
+void OGLWidget::resizeGL(int w, int h) // called when window size is changed
+{
+    // adjust viewport transform
+    glViewport(0,0,w,h);
 }
 

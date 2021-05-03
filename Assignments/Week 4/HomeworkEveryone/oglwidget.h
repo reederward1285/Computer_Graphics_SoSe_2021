@@ -14,7 +14,7 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-//#include <QTimer>
+#include <QTimer>
 #include <vertex.h>
 #include <triangle.h>
 #include <readobj.h>
@@ -25,22 +25,23 @@ class OGLWidget : public QOpenGLWidget,
 {
     Q_OBJECT
 
+
 public:
     OGLWidget(QWidget *parent = 0);
     ~OGLWidget();
-/*
+
 public slots:
     void stepAnimation();
-*/
+
 
 protected:
     void initializeGL();
-    //void resizeGL(int w, int h);
+    void resizeGL(int w, int h);
     void paintGL();
 
 
 protected:
-    //QTimer* animtimer; // Timer needed to step animation every x msec
+    QTimer* animtimer; // Timer needed to step animation every x msec
     int animstep;      // Current animation step (used to rotate triangle
 
 };

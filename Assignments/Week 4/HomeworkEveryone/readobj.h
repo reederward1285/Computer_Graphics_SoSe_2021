@@ -17,15 +17,22 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "triangle.h"
+#include "vertex.h"
 using namespace std;
 
 class ReadObj
 {
+
+    vector<Triangle> tris;
+    vector<Vertex> points;
 public:
     ReadObj();
 public:
     vector<vector<float>> ReadPoints( string fname);
     void ReadTriangle( string fname);
+    vector<Vertex> getPoints();
+    vector<Triangle> getTris();
 };
 
 #endif // READOBJ_H
