@@ -193,9 +193,9 @@ void OGLWidget::initializeGL() // initializations to be called once
 
     //read points
 
-    vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
+    //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
-    //vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
+    vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
 }
 
 

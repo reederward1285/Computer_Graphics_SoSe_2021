@@ -11,16 +11,24 @@
 
 #ifndef VERTEX_H
 #define VERTEX_H
-
+#include <string>
+using namespace std;
 
 class Vertex
 {
 public:
+    // class members
     float xyz[3];
     int w;
+    // class constructor
     Vertex();
     Vertex(float x, float y, float z);
     Vertex( float point[3]);
+    // class methods
+    void print(string description = "Vertex = ");
+    // class friends
+    Vertex friend operator* (float a, Vertex b); // product between scalat and vector
+    Vertex friend operator* (Vertex a, Vertex b); // scalar product
 };
 
 #endif // VERTEX_H
