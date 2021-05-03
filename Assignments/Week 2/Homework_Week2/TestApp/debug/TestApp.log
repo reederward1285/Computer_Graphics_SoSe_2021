@@ -1,4 +1,0 @@
-﻿  main.cpp
-D:\Dropbox\Repos\Computer_Graphics_SoSe_2021\Assignments\Week 2\Homework_Week2\TestApp\main.cpp(4,26): warning C4100: 'argv': unreferenced formal parameter
-D:\Dropbox\Repos\Computer_Graphics_SoSe_2021\Assignments\Week 2\Homework_Week2\TestApp\main.cpp(4,14): warning C4100: 'argc': unreferenced formal parameter
-  TestApp.vcxproj -> D:\Dropbox\Repos\Computer_Graphics_SoSe_2021\Assignments\Week 2\Homework_Week2\TestApp\debug\TestApp.exe
