@@ -18,6 +18,7 @@ SOURCES += main.cpp\
     chaikin.cpp \
     interpolatingcubicsubdivision.cpp \
         mainwindow.cpp \
+    mesh.cpp \
     objfileprocessing.cpp \
     oglwidget.cpp \
     readobj.cpp \
@@ -28,6 +29,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     chaikin.h \
     interpolatingcubicsubdivision.h \
+    mesh.h \
     objfileprocessing.h \
     oglwidget.h \
     readobj.h \
