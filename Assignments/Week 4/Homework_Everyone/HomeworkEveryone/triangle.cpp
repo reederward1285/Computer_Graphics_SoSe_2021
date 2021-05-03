@@ -19,13 +19,13 @@ Triangle::Triangle()
 }
 Triangle::Triangle(int i, int j, int k)
 {
-    indices[0] = i;
-    indices[1] = j;
-    indices[2] = k;
+    iv[0] = i;
+    iv[1] = j;
+    iv[2] = k;
 }
 Triangle::Triangle( int i[3])
 {
-    indices[0] = i[0];
-    indices[1] = i[1];
-    indices[2] = i[2];
+    iv[0] = i[0];
+    iv[1] = i[1];
+    iv[2] = i[2];
 }

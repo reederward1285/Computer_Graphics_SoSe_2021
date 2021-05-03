@@ -17,7 +17,9 @@
 class Triangle
 {
 public:
-    int indices[3];
+    int iv[3]; // vertex indices
+    int it[3]; // adjacent triangle indices
+    int ie[3]; // edge vertex indices
     Triangle();
     Triangle( int i[3]);
     Triangle( int i, int j, int k);
