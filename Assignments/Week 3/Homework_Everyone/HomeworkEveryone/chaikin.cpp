@@ -35,12 +35,15 @@ vector<vector<float>> Chaikin:: chaikinAlg(vector<float> xold, vector<float> yol
     int columns = xold.size();
     int lines = (columns-1)*2;
     float matrix[lines][columns];
+
     //fill martrix with 0
     for( int i=0; i<lines; i++) {
         for( int j=0; j<columns; j++) {
             matrix[i][j] = 0;
         }
     }
+
+    //calculate with dynamic size of matrices
     //fill center of the matrix
     int c = columns-2;
     int l = (lines-3)*2;
@@ -57,6 +60,7 @@ vector<vector<float>> Chaikin:: chaikinAlg(vector<float> xold, vector<float> yol
         }
         i=i+2;
     }
+
     //fill first two and last two lines of the matrix
     matrix[0][0] = 1.0;
     matrix[1][1] = 0.5;
