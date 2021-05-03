@@ -194,13 +194,9 @@ void OGLWidget::initializeGL() // initializations to be called once
     //read points
 
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
-<<<<<<< HEAD
     //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
     vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
-=======
-    vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
-    //vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
->>>>>>> main
+
 }
 
 
@@ -229,14 +225,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     //DrawLineChaikin();
 
     //draw lines with Cubic algorithm
-    //DrawLineCubic();
+    DrawLineCubic();
 
-    // Test Vertex-operators
-    Vertex myVertex = Vertex(3, 5, 1);
-    Vertex otherVertex = Vertex(2, 5, 3);
-    //Vertex res = myVertex * otherVertex;
-    Vertex skalarRes = myVertex * 4.7;
-    skalarRes.print();
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
