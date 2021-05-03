@@ -255,12 +255,13 @@ void OGLWidget::initializeGL() // initializations to be called once
     InitLightingAndProjection(); // define light sources and projection
 
     //read points
-    read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\tetra.obj" );
+    //read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\tetra.obj" );
+    read.ReadTriangle("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\tetra.obj");
     tris = read.getTris();
     points = read.getPoints();
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
-    vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
+    //vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
 
 }
 
