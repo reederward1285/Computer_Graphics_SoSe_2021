@@ -27,7 +27,7 @@ static double alpha = 45.0; // rotation angle
 vector<Triangle> tris;
 vector<Vertex> points;
 
-ReadObj read = ReadObj(tris, points);
+ReadObj read = ReadObj();
 Chaikin chai = *new Chaikin();
 InterpolatingCubicSubdivision cubic = *new InterpolatingCubicSubdivision();
 

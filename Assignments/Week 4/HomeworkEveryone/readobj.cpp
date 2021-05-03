@@ -25,12 +25,7 @@ ReadObj::ReadObj()
 {
 
 }
-ReadObj::ReadObj(vector<Triangle> tris, vector<Vertex> points)
-{
-    this->tris = tris;
-    this->points = points;
 
-}
 
 
 vector<vector<float>> ReadObj:: ReadPoints( string fname){
