@@ -25,7 +25,7 @@ public:
     Triangle();
     Triangle( int i[3]);
     Triangle( int i, int j, int k);
-    void print(string description = "Triangle = ");
+    void print(string description = "Triangle indecies = ");
 };
 
 #endif // TRIANGLE_H
