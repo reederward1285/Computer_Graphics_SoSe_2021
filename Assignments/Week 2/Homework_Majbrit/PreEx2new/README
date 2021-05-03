@@ -1,6 +1,0 @@
-To use this software:
-
-    1. Define path of file that should be read in olgwidget.cpp line 238.
-     -> Put the absolute path of your file in like ReadData("C:\\Users\\$USER\\Documents\\...\\ .obj")
-
-    2. Stay on olgwidget.cpp and click <execute> to start the software.
