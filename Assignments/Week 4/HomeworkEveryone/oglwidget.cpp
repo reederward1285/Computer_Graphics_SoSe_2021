@@ -19,6 +19,7 @@
 #include "readobj.h"
 #include "chaikin.h"
 #include "interpolatingcubicsubdivision.h"
+#include "mesh.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ using namespace std;
 static double alpha = 45.0; // rotation angle
 vector<Triangle> tris;
 vector<Vertex> points;
+vector<Vertex> normal;
 
 ReadObj read = ReadObj();
 Chaikin chai = *new Chaikin();
@@ -88,6 +90,8 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
         tris[i].print();
     }
     */
+    Mesh mesh = Mesh(points, tris);
+
 
     glBegin( GL_TRIANGLES); // each 3 points define a triangle
     //Variables
@@ -96,11 +100,14 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     int t2 = 0;
     int t3 = 0;
 
+    /*
     //for normal vector
-    Vertex normal;
+    Vertex normalvec;
     //for edge vector
     Vertex edge1;
     Vertex edge2;
+    */
+    normal = mesh.getNvec();
 
     for(unsigned int i=0; i<tris.size(); i++){
         //read indices
@@ -108,21 +115,52 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
         t2 = tris[i].iv[1] -1;
         t3 = tris[i].iv[2] -1;
 
+        /*
         //Calculate vectors of the edges
         edge1 = points[t1]-points[t3];
         edge2 = points[t2]-points[t3];
 
         //Calculate normal vector
-        normal = edge1%edge2;
+        normalvec = edge1%edge2;
+
+        normal.push_back(normalvec);
+        */
 
         //draw tetra
-        glNormal3fv( normal.xyz); // normal vector used for all consecutive points
+        SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
+        glNormal3fv( normal[i].xyz); // normal vector used for all consecutive points
         glVertex3fv( points[t1].xyz); //
         glVertex3fv( points[t2].xyz);
         glVertex3fv( points[t3].xyz);
 
-    }
-    glEnd(); // concludes
+
+
+    } 
+
+    glEnd(); // triangle
+
+    //draw lines
+    SetMaterialColor( 1, 1.0, 1.0, 0.0);  // front color is yellow
+    glLineWidth(3.0);
+    glBegin( GL_LINES); // glBegin()
+        glVertex3fv( points[0].xyz);
+        glVertex3fv( points[1].xyz);
+
+        glVertex3fv( points[0].xyz);
+        glVertex3fv( points[2].xyz);
+
+        glVertex3fv( points[0].xyz);
+        glVertex3fv( points[3].xyz);
+
+        glVertex3fv( points[1].xyz);
+        glVertex3fv( points[2].xyz);
+
+        glVertex3fv( points[1].xyz);
+        glVertex3fv( points[3].xyz);
+
+        glVertex3fv( points[2].xyz);
+        glVertex3fv( points[3].xyz);
+    glEnd(); // line
 
 }
 
@@ -255,8 +293,8 @@ void OGLWidget::initializeGL() // initializations to be called once
     InitLightingAndProjection(); // define light sources and projection
 
     //read points
-    //read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\tetra.obj" );
-    read.ReadTriangle("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\tetra.obj");
+    read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\tetra.obj" );
+    //read.ReadTriangle("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\tetra.obj");
     tris = read.getTris();
     points = read.getPoints();
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");

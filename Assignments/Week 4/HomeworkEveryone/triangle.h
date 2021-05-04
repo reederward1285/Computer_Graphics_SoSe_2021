@@ -28,8 +28,8 @@ public:
     Triangle();
     Triangle( int i[3]);
     Triangle( int i, int j, int k);
-    void normalVector();
     void print(string description = "Triangle indices = ");
+    void printNeigbors(string description = "Neigbors = ");
 };
 
 #endif // TRIANGLE_H
