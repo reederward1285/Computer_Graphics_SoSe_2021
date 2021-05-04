@@ -89,8 +89,6 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     Mesh mesh = Mesh(points, tris);
     points = mesh.getPts();
     tris = mesh.getTris();
-    cout <<"nnnnnnn " << tris[0].it[0] << "; " << tris[0].it[1] << "; " << tris[0].it[2] << " " << endl;
-
 
     glBegin( GL_TRIANGLES); // each 3 points define a triangle
     //Variables
@@ -99,9 +97,7 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     int t2 = 0;
     int t3 = 0;
 
-
     normal = mesh.getNvec();
-
 
     for(unsigned int i=0; i<tris.size(); i++){
         //read indices
@@ -109,21 +105,17 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
         t2 = tris[i].iv[1];
         t3 = tris[i].iv[2];
 
-
-
         //draw tetra
         SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
         glNormal3fv( normal[i].xyz); // normal vector used for all consecutive points
         glVertex3fv( points[t1].xyz); //
         glVertex3fv( points[t2].xyz);
         glVertex3fv( points[t3].xyz);
-
-
-
     } 
 
     glEnd(); // triangle
 
+    //! The following code must be rewritten to draw lines depending on the number of triangles in the mesh.
     //draw lines
     SetMaterialColor( 1, 1.0, 1.0, 0.0);  // front color is yellow
     glLineWidth(3.0);

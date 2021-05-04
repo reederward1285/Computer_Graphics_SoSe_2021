@@ -93,13 +93,14 @@ void Mesh::connectAlg()
 
     cout << "Valence list (First vertex has index 0):" << endl;
     for(unsigned int i=0; i<pts.size(); i++){
-        cout << "  Vertex" << i << ": " << valences[i];
+        cout << "  Vertex " << i << ": " << valences[i];
 
     }
     cout << endl;
     cout << "Neighbor triangles of triangles (First triangle has index 0): " << endl;
-    for(Triangle tri: tris){
-        tri.printNeigbors();
+    for(unsigned int i=0; i<tris.size(); i++){
+        cout << "  Triangle " << i << ": " ;
+        tris[i].printNeigbors();
     }
 
 
