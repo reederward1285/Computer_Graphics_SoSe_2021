@@ -85,12 +85,11 @@ void InitLightingAndProjection() // to be executed once before drawing
 
 void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 
-    /*
-    for (int i=0; i<tris.size(); i++){
-        tris[i].print();
-    }
-    */
+
     Mesh mesh = Mesh(points, tris);
+    points = mesh.getPts();
+    tris = mesh.getTris();
+    cout <<"nnnnnnn " << tris[0].it[0] << "; " << tris[0].it[1] << "; " << tris[0].it[2] << " " << endl;
 
 
     glBegin( GL_TRIANGLES); // each 3 points define a triangle
@@ -100,31 +99,17 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     int t2 = 0;
     int t3 = 0;
 
-    /*
-    //for normal vector
-    Vertex normalvec;
-    //for edge vector
-    Vertex edge1;
-    Vertex edge2;
-    */
+
     normal = mesh.getNvec();
+
 
     for(unsigned int i=0; i<tris.size(); i++){
         //read indices
-        t1 = tris[i].iv[0] -1;
-        t2 = tris[i].iv[1] -1;
-        t3 = tris[i].iv[2] -1;
+        t1 = tris[i].iv[0];
+        t2 = tris[i].iv[1];
+        t3 = tris[i].iv[2];
 
-        /*
-        //Calculate vectors of the edges
-        edge1 = points[t1]-points[t3];
-        edge2 = points[t2]-points[t3];
 
-        //Calculate normal vector
-        normalvec = edge1%edge2;
-
-        normal.push_back(normalvec);
-        */
 
         //draw tetra
         SetMaterialColor( 1, 1.0, .2, .2);  // front color is red

@@ -13,6 +13,8 @@ public:
     void normalVector();
     void connectAlg();
     vector<Vertex> getNvec();
+    vector<Vertex> getPts();
+    vector<Triangle> getTris();
     vector <Vertex> pts;
     vector <int> valences;
     vector <Triangle> tris;

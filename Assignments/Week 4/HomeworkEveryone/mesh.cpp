@@ -39,9 +39,9 @@ void Mesh::normalVector()
 
     for(unsigned int i=0; i<tris.size(); i++){
         //read indices
-        t1 = tris[i].iv[0] -1;
-        t2 = tris[i].iv[1] -1;
-        t3 = tris[i].iv[2] -1;
+        t1 = tris[i].iv[0];
+        t2 = tris[i].iv[1];
+        t3 = tris[i].iv[2];
 
         //Calculate vectors of the edges
         edge1 = pts[t2]-pts[t1];
@@ -86,14 +86,14 @@ void Mesh::connectAlg()
                 tris[t].it[2]=tn;
             }
         }
-        valences[tris[t].iv[0]-1] += 1;
-        valences[tris[t].iv[1]-1] += 1;
-        valences[tris[t].iv[2]-1] += 1;
+        valences[tris[t].iv[0]] += 1;
+        valences[tris[t].iv[1]] += 1;
+        valences[tris[t].iv[2]] += 1;
     }
 
-    cout << "Valence list " << endl;
+    cout << "Valence list (First vertex has index 0):" << endl;
     for(unsigned int i=0; i<pts.size(); i++){
-        cout << "  Vertex" << i+1 << ": " << valences[i];
+        cout << "  Vertex" << i << ": " << valences[i];
 
     }
     cout << endl;
@@ -108,4 +108,14 @@ void Mesh::connectAlg()
 vector<Vertex> Mesh::getNvec()
 {
     return nvec;
+}
+
+vector<Vertex> Mesh::getPts()
+{
+    return pts;
+}
+
+vector<Triangle> Mesh::getTris()
+{
+    return tris;
 }

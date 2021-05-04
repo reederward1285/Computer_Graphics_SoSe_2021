@@ -88,7 +88,7 @@ void ReadObj:: ReadTriangle( string fname){
             Vertex v = *new Vertex(x, y, z);
             points.push_back(v);
         } else {
-            Triangle t = *new Triangle(x, y, z);
+            Triangle t = *new Triangle(x-1, y-1, z-1);
             tris.push_back(t);
         }
 
