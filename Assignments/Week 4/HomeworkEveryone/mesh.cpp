@@ -102,8 +102,24 @@ void Mesh::connectAlg()
         cout << "  Triangle " << i << ": " ;
         tris[i].printNeigbors();
     }
+}
 
+void Mesh::linearSubdivisionAlg()
+{
+    // split every triangle into 4 triangles by using midpoints
+    // compute edge midpoints to create the new triangles
+    for (unsigned int i = 0; i < tris.size(); i++)
+    {
+        // neighbors t0, t1, t2
+        // if index(t) < index(t0)
+        //      d = vertex of t0 with b != d != c
+        //      e0 = (a + 3b + 3c + d)/8
+        //      v := v or {e0}
+        // else
+        //      get e0 from t0
+    }
 
+    // analogously construct e1 and e2
 }
 
 vector<Vertex> Mesh::getNvec()

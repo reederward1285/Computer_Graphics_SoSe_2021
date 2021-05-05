@@ -12,6 +12,7 @@ public:
     Mesh(vector<Vertex> pts, vector<Triangle> tris);
     void normalVector();
     void connectAlg();
+    void linearSubdivisionAlg();
     vector<Vertex> getNvec();
     vector<Vertex> getPts();
     vector<Triangle> getTris();
