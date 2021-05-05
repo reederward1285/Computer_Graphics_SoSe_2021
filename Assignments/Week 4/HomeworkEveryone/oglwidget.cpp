@@ -115,29 +115,21 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 
     glEnd(); // triangle
 
-    //! The following code must be rewritten to draw lines depending on the number of triangles in the mesh.
     //draw lines
     SetMaterialColor( 1, 1.0, 1.0, 0.0);  // front color is yellow
     glLineWidth(3.0);
-    glBegin( GL_LINES); // glBegin()
-        glVertex3fv( points[0].xyz);
-        glVertex3fv( points[1].xyz);
-
-        glVertex3fv( points[0].xyz);
-        glVertex3fv( points[2].xyz);
-
-        glVertex3fv( points[0].xyz);
-        glVertex3fv( points[3].xyz);
-
-        glVertex3fv( points[1].xyz);
-        glVertex3fv( points[2].xyz);
-
-        glVertex3fv( points[1].xyz);
-        glVertex3fv( points[3].xyz);
-
-        glVertex3fv( points[2].xyz);
-        glVertex3fv( points[3].xyz);
-    glEnd(); // line
+    glBegin( GL_LINE_LOOP); // each 3 points define a triangle
+    for(unsigned int i=0; i<tris.size(); i++){
+        //read indices
+        t1 = tris[i].iv[0];
+        t2 = tris[i].iv[1];
+        t3 = tris[i].iv[2];
+        //draw lines of a triangle
+        glVertex3fv( points[t1].xyz); //
+        glVertex3fv( points[t2].xyz);
+        glVertex3fv( points[t3].xyz);
+    }
+    glEnd(); // lines
 
 }
 
