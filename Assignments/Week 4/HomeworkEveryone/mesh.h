@@ -13,6 +13,7 @@ public:
     void normalVector();
     void connectAlg();
     void linearSubdivisionAlg();
+    void createNewTriangles();
     vector<Vertex> getNvec();
     vector<Vertex> getPts();
     vector<Triangle> getTris();

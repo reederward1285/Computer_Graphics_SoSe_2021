@@ -87,8 +87,7 @@ Vertex operator* (float s, Vertex b)
  */
 Vertex operator* (Vertex b, float s)
 {
-    Vertex c = Vertex(s*b);
-    return c;
+    return s*b;
 }
 
 Vertex operator% (Vertex a, Vertex b)

@@ -33,6 +33,8 @@ ReadObj read = ReadObj();
 Chaikin chai = *new Chaikin();
 InterpolatingCubicSubdivision cubic = *new InterpolatingCubicSubdivision();
 
+Mesh mesh;
+
 vector <vector<float>> vecpoints;
 //vector <vector<float>> allPoints;
 float colorValues[3][4] = // Values with colors for SetMaterialColor()
@@ -86,9 +88,11 @@ void InitLightingAndProjection() // to be executed once before drawing
 void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 
 
+    /*
     Mesh mesh = Mesh(points, tris);
     points = mesh.getPts();
     tris = mesh.getTris();
+    */
 
     glBegin( GL_TRIANGLES); // each 3 points define a triangle
     //Variables
@@ -118,18 +122,21 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     //draw lines
     SetMaterialColor( 1, 1.0, 1.0, 0.0);  // front color is yellow
     glLineWidth(3.0);
-    glBegin( GL_LINE_LOOP); // each 3 points define a triangle
     for(unsigned int i=0; i<tris.size(); i++){
-        //read indices
-        t1 = tris[i].iv[0];
-        t2 = tris[i].iv[1];
-        t3 = tris[i].iv[2];
-        //draw lines of a triangle
-        glVertex3fv( points[t1].xyz); //
-        glVertex3fv( points[t2].xyz);
-        glVertex3fv( points[t3].xyz);
+        glBegin( GL_LINE_LOOP); // each 3 points define a triangle
+
+            //read indices
+            t1 = tris[i].iv[0];
+            t2 = tris[i].iv[1];
+            t3 = tris[i].iv[2];
+            //draw lines of a triangle
+            glVertex3fv( points[t1].xyz); //
+            glVertex3fv( points[t2].xyz);
+            glVertex3fv( points[t3].xyz);
+        glEnd(); // lines
     }
-    glEnd(); // lines
+
+
 
 }
 
@@ -266,6 +273,9 @@ void OGLWidget::initializeGL() // initializations to be called once
     //read.ReadTriangle("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\tetra.obj");
     tris = read.getTris();
     points = read.getPoints();
+    mesh = Mesh(points, tris);
+    points = mesh.getPts();
+    tris = mesh.getTris();
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
