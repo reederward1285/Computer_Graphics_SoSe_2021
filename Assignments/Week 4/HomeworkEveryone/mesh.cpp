@@ -253,6 +253,18 @@ void Mesh::createNewTriangles()
 }
 
 /**
+  * @brief Mesh::validate iterates through all containing values and checks for wrong values
+  * @return boolean, true when all values correct else false
+  *
+  * @todo put function on top of the constructor in mesh class to avoid following calculation
+  * problems of the ojects
+  */
+bool Mesh::validate()
+{
+    // get data
+}
+
+/**
  * @brief Mesh::getNvec normal vector
  * @return nvec normal vector of every triangle
  */

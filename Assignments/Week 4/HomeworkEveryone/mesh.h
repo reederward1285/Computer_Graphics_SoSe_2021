@@ -3,6 +3,7 @@
 #include "vertex.h"
 #include "triangle.h"
 #include <vector>
+#include <stdbool.h>
 
 
 class Mesh
@@ -14,6 +15,7 @@ public:
     void connectAlg();
     void linearSubdivisionAlg();
     void createNewTriangles();
+    bool validate(); // used to validate correctnes of containing values
     vector<Vertex> getNvec();
     vector<Vertex> getPts();
     vector<Triangle> getTris();
