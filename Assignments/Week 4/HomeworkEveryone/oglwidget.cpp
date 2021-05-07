@@ -85,14 +85,11 @@ void InitLightingAndProjection() // to be executed once before drawing
 
 }
 
+/**
+ * @brief DrawTriangleMesh draws a mesh of triangles with red face and yellow edges
+ */
 void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
 
-
-    /*
-    Mesh mesh = Mesh(points, tris);
-    points = mesh.getPts();
-    tris = mesh.getTris();
-    */
 
     glBegin( GL_TRIANGLES); // each 3 points define a triangle
     //Variables
@@ -101,8 +98,11 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     int t2 = 0;
     int t3 = 0;
 
+    //normal vector of every Triangle
     normal = mesh.getNvec();
 
+    //draw face of every Triangle
+    SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
     for(unsigned int i=0; i<tris.size(); i++){
         //read indices
         t1 = tris[i].iv[0];
@@ -110,16 +110,14 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
         t3 = tris[i].iv[2];
 
         //draw tetra
-        SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
         glNormal3fv( normal[i].xyz); // normal vector used for all consecutive points
         glVertex3fv( points[t1].xyz); //
         glVertex3fv( points[t2].xyz);
         glVertex3fv( points[t3].xyz);
     } 
-
     glEnd(); // triangle
 
-    //draw lines
+    //draw lines of every Triangle
     SetMaterialColor( 1, 1.0, 1.0, 0.0);  // front color is yellow
     glLineWidth(3.0);
     for(unsigned int i=0; i<tris.size(); i++){
@@ -135,9 +133,6 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
             glVertex3fv( points[t3].xyz);
         glEnd(); // lines
     }
-
-
-
 }
 
 
@@ -263,7 +258,7 @@ OGLWidget::~OGLWidget() // destructor
 
 void OGLWidget::initializeGL() // initializations to be called once
 {
-    cout <<"InitializeGL "<< endl;
+    //cout <<"InitializeGL "<< endl;
     initializeOpenGLFunctions();
 
     InitLightingAndProjection(); // define light sources and projection
@@ -273,13 +268,14 @@ void OGLWidget::initializeGL() // initializations to be called once
     //read.ReadTriangle("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\tetra.obj");
     tris = read.getTris();
     points = read.getPoints();
+    //calculate mesh
     mesh = Mesh(points, tris);
     points = mesh.getPts();
     tris = mesh.getTris();
+
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
     //vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
-
 }
 
 
@@ -312,16 +308,6 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
 
     // draw a triangle mesh (here tetra)
     DrawTriangleMesh();
-
-
-    //test
-    /*
-    Vertex ik = Vertex(2,3,4);
-    Vertex jk = Vertex(3.0,2.3,2);
-    Vertex k = ik%jk;
-    k.print();
-    */
-
 
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();

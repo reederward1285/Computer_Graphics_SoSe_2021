@@ -26,8 +26,11 @@ ReadObj::ReadObj()
 
 }
 
-
-
+/**
+ * @brief ReadObj::ReadPoints reads points from a .obj file
+ * @param fname path to the file
+ * @return vector of points
+ */
 vector<vector<float>> ReadObj:: ReadPoints( string fname){
     vector<vector<float>> vecpoints;
     vector<float> xpoints;
@@ -67,6 +70,10 @@ vector<vector<float>> ReadObj:: ReadPoints( string fname){
     return vecpoints;
 }
 
+/**
+ * @brief ReadObj::ReadTriangle reads points from a .obj file and creates Vertex and Triangle objects
+ * @param fname path to the file
+ */
 void ReadObj:: ReadTriangle( string fname){
     ifstream file( fname);
     //Error message if data cannot be read in
@@ -96,7 +103,7 @@ void ReadObj:: ReadTriangle( string fname){
 
     file.close();
 
-    cout <<"ReadTriangle"<< endl;
+    //cout <<"ReadTriangle"<< endl;
 }
 
 vector<Vertex> ReadObj::getPoints()

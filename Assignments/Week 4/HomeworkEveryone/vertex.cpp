@@ -33,19 +33,35 @@ Vertex::Vertex( float point[3])
     xyz[2] = point[2];
 }
 
+/**
+ * @brief Vertex::print outputs x, y and z cooridinates of a vertex
+ * @param description description of vertex
+ */
+void Vertex::print(string description )
+{
+    cout << description << "[ " << xyz[0] << "; " << xyz[1] << "; " << xyz[2] << " ]" << endl;
+}
+
+/**
+ * @brief operator + adds two vertexes
+ * @param a first Vertex
+ * @param b second Vertex
+ * @return result sum
+ */
 Vertex operator+ (Vertex a, Vertex b)
 {
     return Vertex(a.xyz[0] + b.xyz[0], a.xyz[1] + b.xyz[1], a.xyz[2] + b.xyz[2]);
 }
 
+/**
+ * @brief operator - subtracts second vertex from first vertex
+ * @param a first Vertex
+ * @param b second Vertex
+ * @return result difference
+ */
 Vertex operator- (Vertex a, Vertex b)
 {
     return Vertex(a.xyz[0] - b.xyz[0], a.xyz[1] - b.xyz[1], a.xyz[2] - b.xyz[2]);
-}
-
-void Vertex::print(string description )
-{
-    cout << description << "[ " << xyz[0] << "; " << xyz[1] << "; " << xyz[2] << " ]" << endl;
 }
 
 /**
@@ -83,13 +99,19 @@ Vertex operator* (float s, Vertex b)
  * @brief operator * multiplies a single value with a vector (mirrored)
  * @param s is skalar of type float
  * @param b is vector object
- * @return c is result vector
+ * @return result vector
  */
 Vertex operator* (Vertex b, float s)
 {
     return s*b;
 }
 
+/**
+ * @brief operator % calculates the cross product of two vertices
+ * @param a first Vertex
+ * @param b second Vertex
+ * @return c result Vertex
+ */
 Vertex operator% (Vertex a, Vertex b)
 {
     Vertex c;
