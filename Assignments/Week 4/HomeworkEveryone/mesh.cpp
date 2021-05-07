@@ -262,6 +262,7 @@ void Mesh::createNewTriangles()
 bool Mesh::validate()
 {
     // get data
+    return 0;
 }
 
 /**
