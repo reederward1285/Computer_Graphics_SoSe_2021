@@ -12,7 +12,7 @@ using namespace std;
 
 Mesh::Mesh()
 {
-
+    // empty constructor
 }
 
 /**
@@ -24,6 +24,9 @@ Mesh::Mesh(vector<Vertex> pts, vector<Triangle> tris)
 {
     this-> pts = pts;
     this-> tris = tris;
+
+    //validate values
+    this->validate();
 
     //for first subdivision
     connectAlg();
@@ -261,8 +264,31 @@ void Mesh::createNewTriangles()
   */
 bool Mesh::validate()
 {
-    // get data
-    return 0;
+    // check all points for NULL
+    for(unsigned int i = 0; i <= this->pts.size(); i++)
+    {
+        // todo: which values are not allowed instead of NULL?
+        if( this->pts[i].xyz[0] == NULL){
+
+            cout << "ERROR wrong value: pts[" << i << "].x == NULL" << endl;
+
+        } else if ( this->pts[i].xyz[1] == NULL) {
+
+            cout << "ERROR wrong value: pts[" << i << "].y == NULL" << endl;
+
+        } else if ( this->pts[i].xyz[2] == NULL) {
+
+            cout << "ERROR wrong value: pts[" << i << "].z == NULL" << endl;
+        }
+   // cout << "Mesh::validate() successd" << endl;
+    }
+
+    /*
+    for(unsigned int i = 0; i <= this->tris.size(); i++)
+    {
+
+    }
+    */
 }
 
 /**
