@@ -117,6 +117,7 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
     } 
     glEnd(); // triangle
 
+
     //draw lines of every Triangle
     SetMaterialColor( 1, 1.0, 1.0, 0.0);  // front color is yellow
     glLineWidth(3.0);
@@ -133,6 +134,7 @@ void DrawTriangleMesh(){ // drawing a triangle mesh (here tetra)
             glVertex3fv( points[t3].xyz);
         glEnd(); // lines
     }
+
 }
 
 
@@ -294,7 +296,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glLoadIdentity();				// Reset The Current Modelview Matrix
     glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
-    glRotated( alpha, 0, 3, 1);     // continuous rotation
+    glRotated(  alpha, 1,  1, -1);     // continuous rotation
     alpha += 5;
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b

@@ -25,13 +25,12 @@ Mesh::Mesh(vector<Vertex> pts, vector<Triangle> tris)
     this-> pts = pts;
     this-> tris = tris;
 
-
-    //for first subdivision
-    connectAlg();
-    linearSubdivisionAlg();
-    //for second subdivision
-    connectAlg();
-    linearSubdivisionAlg();
+    //for subdivisions
+    for(int i=0; i<3; i++)
+    {
+        connectAlg();
+        linearSubdivisionAlg();
+    }
 
 }
 
@@ -133,14 +132,16 @@ void Mesh::connectAlg()
  */
 void Mesh::linearSubdivisionAlg()
 {
-    /*
+
     //---with formula---
     //variable for new Vertex
     Vertex d = Vertex();
     bool test1;
     bool test2;
     bool test3;
-    */
+
+
+    int oldPtsSize = (int)pts.size();
 
     int i1;
     int i2;
@@ -172,7 +173,7 @@ void Mesh::linearSubdivisionAlg()
             //otherwise the edge point is already calculated
             if(i<t.it[j])
             {
-                /*
+
                 //---with formula---
                 //find Vertex in neigbor Triangle that is not in Triangle t
                 test1 = t.iv[i1]==n.iv[0] || t.iv[i2]==n.iv[0];
@@ -190,15 +191,14 @@ void Mesh::linearSubdivisionAlg()
                     d = pts[n.iv[2]];
                 }
 
-                cout<< "hier "<<endl;
                 d.print();
 
                 //with formula
                 e = (pts[t.iv[i3]] + 3*pts[t.iv[i1]] + 3*pts[t.iv[i2]] +d) * 0.125;
-                */
+
 
                 //edge vertices
-                e = (pts[t.iv[i1]] + pts[t.iv[i2]]) * 0.5;
+                //e = (pts[t.iv[i1]] + pts[t.iv[i2]]) * 0.5;
 
                 tris[i].ie[j] = pts.size();
                 pts.push_back(e);
@@ -224,28 +224,24 @@ void Mesh::linearSubdivisionAlg()
         cout << "  Triangle " << i <<": ie = [ " << tris[i].ie[0] << "; "<< tris[i].ie[1] << "; " << tris[i].ie[2] << " ]" << endl;
     }
 
-    //
 
-    /*
-    //vector<Vertex> oldPts;
-    for( int i=0; i< (int)pts.size(); i++)
-    { // multiply every vertex with beta
+    // multiply every vertex with beta
+    for( int i=0; i< oldPtsSize; i++)
+    {
         int n = valences[i]; // n = valence of v_i
         float beta = beta_n( n);
         pts[i] *= beta; // v_i *= beta(n)
-        //Vertex v= pts[i];
-        //oldPts.push_back(v);
+
     }
 
+    //Vertex mask
+    //for first second and third point of every triangle
     for (int i=0; i<(int)tris.size(); i++)
     {
-       pts[tris[i].iv[0]] += (1-beta_n(valences[tris[i].iv[0]])/(valences[tris[i].iv[0]])*(pts[tris[i].ie[1]]+pts[tris[i].iv[2]])/2.0;
+       pts[tris[i].iv[0]] +=  ( ( (1.0 - beta_n(valences[tris[i].iv[0]])) / (valences[tris[i].iv[0]])) * ((pts[tris[i].ie[1]]+pts[tris[i].ie[2]]) / 2.0));
+       pts[tris[i].iv[1]] +=  ( ( (1.0 - beta_n(valences[tris[i].iv[1]])) / (valences[tris[i].iv[1]])) * ((pts[tris[i].ie[2]]+pts[tris[i].ie[0]]) / 2.0));
+       pts[tris[i].iv[2]] +=  ( ( (1.0 - beta_n(valences[tris[i].iv[2]])) / (valences[tris[i].iv[2]])) * ((pts[tris[i].ie[0]]+pts[tris[i].ie[1]]) / 2.0));
     }
-    */
-
-
-
-
 
     createNewTriangles();
 }
@@ -312,16 +308,17 @@ bool Mesh::validate()
     */
 }
 
+/**
+ * @brief Mesh::beta_n calculates beta from the number of triangles for every point
+ * @param n number of triangles for every point
+ * @return beta
+ */
 float Mesh::beta_n(int n)
 {
     float alpha;
     float beta;
     alpha = (3.0/8.0) + pow((3.0/8.0) + (1.0/4.0) * (cos(2.0*PI/n)), 2);
     beta = (8.0/5.0) * alpha - (3.0/5.0);
-
-    cout << "alpha "<<n<<" "<< alpha << endl;
-    cout << "beta "<<n<<" "<<  beta << endl;
-
     return beta;
 }
 

@@ -39,8 +39,10 @@ public:
     friend Vertex operator% (Vertex a, Vertex b);
     friend Vertex operator/ (Vertex a, float s);
 
-    void operator*=(float a);
-    void operator+=(Vertex a);
+    //friend Vertex operator*=(Vertex a, float s);
+    //friend Vertex operator+=(Vertex a);
+    void operator *= (float a);
+    void operator += (Vertex a);
 
 };
 
