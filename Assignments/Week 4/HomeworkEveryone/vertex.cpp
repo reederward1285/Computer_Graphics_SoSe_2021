@@ -44,9 +44,9 @@ void Vertex::operator*=(float a)
 void Vertex::operator+=(Vertex a)
 {
     // need to test this function and implement it into the calculation routine
-    xyz[0] = xyz[0] * a.xyz[0];
-    xyz[1] = xyz[1] * a.xyz[1];
-    xyz[2] = xyz[2] * a.xyz[2];
+    xyz[0] = xyz[0] += a.xyz[0];
+    xyz[1] = xyz[1] += a.xyz[1];
+    xyz[2] = xyz[2] += a.xyz[2];
 }
 
 float Vertex::beta_n(int n)
