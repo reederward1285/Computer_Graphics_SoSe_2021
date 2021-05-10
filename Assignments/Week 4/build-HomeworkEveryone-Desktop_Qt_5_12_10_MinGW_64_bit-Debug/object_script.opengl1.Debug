@@ -1,0 +1,13 @@
+debug/main.o
+debug/chaikin.o
+debug/interpolatingcubicsubdivision.o
+debug/mainwindow.o
+debug/mesh.o
+debug/objfileprocessing.o
+debug/oglwidget.o
+debug/readobj.o
+debug/triangle.o
+debug/vec3.o
+debug/vertex.o
+debug/moc_mainwindow.o
+debug/moc_oglwidget.o
