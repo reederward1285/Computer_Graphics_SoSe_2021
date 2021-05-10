@@ -225,6 +225,7 @@ void Mesh::linearSubdivisionAlg()
     }
 
     //
+
     /*
     //vector<Vertex> oldPts;
     for( int i=0; i< (int)pts.size(); i++)
@@ -238,7 +239,7 @@ void Mesh::linearSubdivisionAlg()
 
     for (int i=0; i<(int)tris.size(); i++)
     {
-       // pts[tris[i].iv[0]] += (1-beta_n(valences[tris[i].iv[0]])/(valences[tris[i].iv[0]])*(pts[tris[i].ie[1]]+pts[tris[i].iv[2]])/2;
+       pts[tris[i].iv[0]] += (1-beta_n(valences[tris[i].iv[0]])/(valences[tris[i].iv[0]])*(pts[tris[i].ie[1]]+pts[tris[i].iv[2]])/2.0;
     }
     */
 

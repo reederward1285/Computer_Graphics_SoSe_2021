@@ -139,3 +139,13 @@ Vertex operator% (Vertex a, Vertex b)
     return c;
 }
 
+Vertex operator/ (Vertex a, float s)
+{
+    Vertex c = Vertex(
+                        a.xyz[0]/s,
+                        a.xyz[1]/s,
+                        a.xyz[2]/s
+                     );
+    return c;
+}
+
