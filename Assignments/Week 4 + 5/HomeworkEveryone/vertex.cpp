@@ -9,7 +9,6 @@
  * Contact: dmelamed@stud.hs-bremen.de
  */
 
-//NEW
 #include "vertex.h"
 #include <iostream>
 using namespace std;
@@ -31,6 +30,28 @@ Vertex::Vertex( float point[3])
     xyz[0] = point[0];
     xyz[1] = point[1];
     xyz[2] = point[2];
+}
+
+void Vertex::operator*=(float a)
+{
+    // need to test this function and implement it into the calculation routine
+    xyz[0] = xyz[0] * a;
+    xyz[1] = xyz[1] * a;
+    xyz[2] = xyz[2] * a;
+}
+
+void Vertex::operator+=(Vertex a)
+{
+    // need to test this function and implement it into the calculation routine
+    xyz[0] = xyz[0] += a.xyz[0];
+    xyz[1] = xyz[1] += a.xyz[1];
+    xyz[2] = xyz[2] += a.xyz[2];
+}
+
+float Vertex::beta_n(int n)
+{
+    // still need to implement this function
+    return 0.0;
 }
 
 /**

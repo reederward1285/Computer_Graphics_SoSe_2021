@@ -912,7 +912,8 @@ debug/oglwidget.o: ../../../Week\ 4/HomeworkEveryone/oglwidget.cpp ../../../Week
 		../../../Week\ 4/HomeworkEveryone/triangle.h \
 		../../../Week\ 4/HomeworkEveryone/readobj.h \
 		../../../Week\ 4/HomeworkEveryone/chaikin.h \
-		../../../Week\ 4/HomeworkEveryone/interpolatingcubicsubdivision.h
+		../../../Week\ 4/HomeworkEveryone/interpolatingcubicsubdivision.h \
+		../../../Week\ 4/HomeworkEveryone/mesh.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\oglwidget.o "..\..\..\Week 4\HomeworkEveryone\oglwidget.cpp"
 
 debug/readobj.o: ../../../Week\ 4/HomeworkEveryone/readobj.cpp ../../../Week\ 4/HomeworkEveryone/readobj.h \

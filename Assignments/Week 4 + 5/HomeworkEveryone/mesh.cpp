@@ -157,7 +157,7 @@ void Mesh::linearSubdivisionAlg()
     int mv[3][3] = {{1, 2, 0}, {2, 0, 1}, {0, 1, 2}};
 
     //for every triangle calculate edge points
-    for(unsigned int i = 0; i < tris.size(); i++)
+    for(int i = 0; i < (int)tris.size(); i++)
     {
         t = tris[i];
         //for the 3 edge points of a triangle
