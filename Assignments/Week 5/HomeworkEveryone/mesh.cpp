@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <typeinfo>
 #include <string>
 #include <vector>
 using namespace std;
@@ -25,6 +26,7 @@ Mesh::Mesh(vector<Vertex> pts, vector<Triangle> tris)
     this-> pts = pts;
     this-> tris = tris;
 
+    this->validate();
 
     //for first subdivision
     connectAlg();
@@ -285,31 +287,70 @@ void Mesh::createNewTriangles()
   */
 bool Mesh::validate()
 {
-    // check all points for NULL
+    bool valid = false;
+
+    // check all point-coordinates for value NaN
     for(unsigned int i = 0; i <= this->pts.size(); i++)
     {
-        // todo: which values are not allowed instead of NULL?
-        if( this->pts[i].xyz[0] == NULL){
+        if( this->pts[i].xyz[0] == NAN)
+        {
+            cout << "## ERROR wrong value: pts[" << i << "].x == NaN ##" << '\n' << endl;
+            valid = false;
 
-            cout << "ERROR wrong value: pts[" << i << "].x == NULL" << endl;
+        } else if ( this->pts[i].xyz[1] == NAN) {
 
-        } else if ( this->pts[i].xyz[1] == NULL) {
+            cout << "## ERROR wrong value: pts[" << i << "].y == NaN ##" << '\n' << endl;
+            valid = false;
 
-            cout << "ERROR wrong value: pts[" << i << "].y == NULL" << endl;
+        } else if ( this->pts[i].xyz[2] == NAN) {
 
-        } else if ( this->pts[i].xyz[2] == NULL) {
-
-            cout << "ERROR wrong value: pts[" << i << "].z == NULL" << endl;
+            cout << "## ERROR wrong value: pts[" << i << "].z == NaN ##" << '\n' << endl;
+            valid = false;
         }
-   // cout << "Mesh::validate() successd" << endl;
     }
+    cout << "# Mesh::pts valid #" << endl;
 
-    /*
-    for(unsigned int i = 0; i <= this->tris.size(); i++)
+    // check all triangle indecies for value NaN
+    for(unsigned int i = 0; i < this->tris.size(); i++)
     {
+        // todo: which values are not allowed instead of NaN?
+        // todo2: tris.iv <= pts.size()
+        if( this->pts[i].xyz[0] == NAN)
+        {
 
+            cout << "## ERROR wrong value: pts[" << i << "].x == NULL ##" << '\n' << endl;
+            valid = false;
+
+        } else if ( this->pts[i].xyz[1] == NAN) {
+
+            cout << "## ERROR wrong value: pts[" << i << "].y == NULL ##" << '\n' << endl;
+            valid = false;
+
+        } else if ( this->pts[i].xyz[2] == NAN) {
+
+            cout << "## ERROR wrong value: pts[" << i << "].z == NULL ##" << '\n' << endl;
+            valid = false;
+
+        } else {
+
+            valid = true;
+        }
+
+
+        // check triangle points if tris indecies matches vertex points
+        for(int v = 0; v < 3; v++)
+        {
+            if(this->tris[i].iv[v] >= (int)this->pts.size())
+            {
+                cout << "## ERROR: tris[" << i <<"].iv[" << v << "] does not match vertex vector ##" << '\n' << endl;
+                valid = false;
+            } else {
+                valid = true;
+            }
+        }
     }
-    */
+    cout << "# Mesh::tris valid #" << '\n' << endl;
+    return valid;
 }
 
 float Mesh::beta_n(int n)
