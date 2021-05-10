@@ -912,7 +912,8 @@ release/oglwidget.o: ../../../Week\ 4/HomeworkEveryone/oglwidget.cpp ../../../We
 		../../../Week\ 4/HomeworkEveryone/triangle.h \
 		../../../Week\ 4/HomeworkEveryone/readobj.h \
 		../../../Week\ 4/HomeworkEveryone/chaikin.h \
-		../../../Week\ 4/HomeworkEveryone/interpolatingcubicsubdivision.h
+		../../../Week\ 4/HomeworkEveryone/interpolatingcubicsubdivision.h \
+		../../../Week\ 4/HomeworkEveryone/mesh.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\oglwidget.o "..\..\..\Week 4\HomeworkEveryone\oglwidget.cpp"
 
 release/readobj.o: ../../../Week\ 4/HomeworkEveryone/readobj.cpp ../../../Week\ 4/HomeworkEveryone/readobj.h \
