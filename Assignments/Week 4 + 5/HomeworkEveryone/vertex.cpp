@@ -9,7 +9,6 @@
  * Contact: dmelamed@stud.hs-bremen.de
  */
 
-//NEW
 #include "vertex.h"
 #include <iostream>
 using namespace std;
