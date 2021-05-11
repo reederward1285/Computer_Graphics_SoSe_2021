@@ -2,7 +2,6 @@ release/main.o
 release/chaikin.o
 release/interpolatingcubicsubdivision.o
 release/mainwindow.o
-release/mesh.o
 release/objfileprocessing.o
 release/oglwidget.o
 release/readobj.o
