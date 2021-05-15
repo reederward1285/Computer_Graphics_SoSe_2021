@@ -34,6 +34,8 @@ Mesh::Mesh(vector<Vertex> pts, vector<Triangle> tris)
         linearSubdivisionAlg();
     }
 
+    normalVector();
+
 }
 
 /**
@@ -270,7 +272,7 @@ void Mesh::createNewTriangles()
         trisnew.push_back(t3);
     }
     tris = trisnew;
-    normalVector();
+
 }
 
 
