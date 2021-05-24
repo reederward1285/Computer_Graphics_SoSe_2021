@@ -35,6 +35,8 @@ Mesh::Mesh(vector<Vertex> pts, vector<Triangle> tris)
         linearSubdivisionAlg();
     }
 
+
+
     normalVector();
 
 }

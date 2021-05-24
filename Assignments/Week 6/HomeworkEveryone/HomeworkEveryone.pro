@@ -40,10 +40,15 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 DISTFILES += \
+    CrazyTetraV3.obj \
+    CrazyTetraV4.obj \
+    CrazyTetraV5.obj \
     Dot.obj \
     README \
     brotkasten.obj \
     irgendwas.obj \
     line.obj \
+    madFace.obj \
     salz.obj \
-    tetra.obj
+    tetra.obj \
+    zweiKugeln.obj

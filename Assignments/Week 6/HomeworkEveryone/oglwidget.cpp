@@ -266,7 +266,10 @@ void OGLWidget::initializeGL() // initializations to be called once
     InitLightingAndProjection(); // define light sources and projection
 
     //read points
-    read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\salz.obj" );
+    read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\CrazyTetraV4.obj" );
+    //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\madFace.obj" );
+    //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\zweiKugeln.obj" );
+    //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\salz.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\brotkasten.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\irgendwas.obj" );
     //read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\6\\HomeworkEveryone\\tetra.obj" );
@@ -298,8 +301,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glMatrixMode( GL_MODELVIEW);
     glLoadIdentity();				// Reset The Current Modelview Matrix
     glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 2.0, 2.0, 2.0);       // scale objects
-    glRotated(  alpha, 1,  1, -1);     // continuous rotation
+    glScaled( 1.0, 1.0, 1.0);       // scale objects
+    glRotated(  alpha, 1, 1, -1);     // continuous rotation
     alpha += 5;
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
