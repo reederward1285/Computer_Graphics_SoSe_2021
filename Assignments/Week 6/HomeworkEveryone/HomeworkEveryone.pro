@@ -19,22 +19,18 @@ SOURCES += main.cpp\
     interpolatingcubicsubdivision.cpp \
         mainwindow.cpp \
     mesh.cpp \
-    objfileprocessing.cpp \
     oglwidget.cpp \
     readobj.cpp \
     triangle.cpp \
-    vec3.cpp \
     vertex.cpp
 
 HEADERS  += mainwindow.h \
     chaikin.h \
     interpolatingcubicsubdivision.h \
     mesh.h \
-    objfileprocessing.h \
     oglwidget.h \
     readobj.h \
     triangle.h \
-    vec3.hpp \
     vertex.h
 
 FORMS    += mainwindow.ui
