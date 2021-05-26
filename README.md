@@ -1,4 +1,4 @@
-# Computer_Graphics_SoSe_2021
+# Computer Graphics Module - Summer Semester 2021
  Assignments for Computer Graphics Module in Summer Semester 2021 at Hochschule Bremen
  
  How to generate an SSH key in Windows: https://phoenixnap.com/kb/generate-ssh-key-windows-10
