@@ -143,10 +143,10 @@ void ReadObj::ReadBlend(string fname)
                 cout << key << " " << fx << " " << fy << " " << fz << " " << endl;
 
                 Triangle t = *new Triangle(
-                            stoi(fx.substr(0, fx.find("/")))-1,
-                            stoi(fy.substr(0, fy.find("/")))-1,
-                            stoi(fz.substr(0, fz.find("/")))-1
-                                           );
+                                            stoi(fx.substr(0, fx.find("/")))-1,
+                                            stoi(fy.substr(0, fy.find("/")))-1,
+                                            stoi(fz.substr(0, fz.find("/")))-1
+                                          );
                 tris.push_back(t);
             }
         }

@@ -266,14 +266,16 @@ void OGLWidget::initializeGL() // initializations to be called once
     InitLightingAndProjection(); // define light sources and projection
 
     //read points
-    read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\CrazyTetraV4.obj" );
+    //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\CrazyTetraV4.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\madFace.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\zweiKugeln.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\salz.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\brotkasten.obj" );
     //read.ReadBlend("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\david\\HomeworkEveryone\\irgendwas.obj" );
     //read.ReadTriangle("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\6\\HomeworkEveryone\\tetra.obj" );
-    //read.ReadTriangle("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 5\\HomeworkEveryone\\tetra.obj");
+    //read.ReadTriangle("C:\\Users\\x-zoc\\Documents\\Projekte\\GitHub\\Computer_Graphics\\tetra.obj");
+    //read.ReadBlend("C:\\Users\\x-zoc\\Documents\\Projekte\\GitHub\\Computer_Graphics\\CrazyTetraV4.obj" );
+    read.ReadBlend("C:\\Users\\x-zoc\\Downloads\\CrazyTetraV4.obj" );
     //read.ReadTriangle("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Objects\\tetra.obj");
     tris = read.getTris();
     points = read.getPoints();
@@ -283,8 +285,6 @@ void OGLWidget::initializeGL() // initializations to be called once
     tris = mesh.getTris();
 
     //vecpoints = read.ReadPoints("C:\\majbrit\\Medieninformatik\\Semester 4\\ComputerGraphics\\Aufgaben\\4\\HomeworkEveryone\\Dot.obj");
-    //vecpoints = read.ReadPoints("D:\\Dropbox\\Repos\\Computer_Graphics_SoSe_2021\\Assignments\\Week 3\\Homework_Everyone\\HomeworkEveryone\\Dot.obj");
-    //vecpoints = read.ReadPoints("C:\\Users\\Melam\\Documents\\GitHub\\Computer_Graphics_SoSe_2021\\Assignments\\Week 4\\HomeworkEveryone\\Dot.obj");
 }
 
 
