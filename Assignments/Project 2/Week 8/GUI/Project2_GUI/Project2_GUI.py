@@ -1,4 +1,6 @@
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog
 
 
 class Ui_Project2_GUI(object):
@@ -48,7 +50,19 @@ class Ui_Project2_GUI(object):
         self.label_2.adjustSize()
         self.label_3.adjustSize()
         self.button_ImportObjFile.adjustSize()
+        self.button_ImportObjFile.clicked.connect(self.importObjFile)
         self.button_PerformSubdivision.adjustSize()
+
+    def importObjFile(self):
+        filename = self.openFileNameDialog()
+
+    def openFileNameDialog(self):
+        fileName = QFileDialog.getOpenFileName(self.button_ImportObjFile.parent(),"Import OBJ File", "","All Files (*);;Obj Files (*.obj)")
+        
+        # parse out file name
+        fileName = os.path.basename(fileName[0])
+        print(fileName)
+        self.label_ObjFileName.setText(fileName)
 
 
 if __name__ == "__main__":
