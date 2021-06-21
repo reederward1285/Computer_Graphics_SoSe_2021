@@ -210,6 +210,37 @@ class Mesh:
             #save normal vector in Mesh class vector
             self.nvec.append(normalvec)
 
+    def scaleAlg(self, factor):
+        scalefactor = factor/100.0 -1
+        if (scalefactor > 0):
+            center = Vertex(0, 0, 0)
+            for v in self.pts:
+                center += v
+            center = center / len(self.pts)
+            for i in range(0, len(self.pts)):
+                scalevertex = self.pts[i] - center
+                expansion =  scalevertex * scalefactor
+                self.pts[i] = self.pts[i] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+        def xscaleAlg(self, factor):
+            scalefactor = factor/100.0 -1
+        if (scalefactor > 0):
+            center = Vertex(0, 0, 0)
+            for v in self.pts:
+                center += v
+            center = center / len(self.pts)
+            for i in range(0, len(self.pts)):
+                scalevertex = self.pts[i] - center
+                expansion =  scalevertex * scalefactor
+                self.pts[i].xyz[0] = self.pts[i].xyz[0] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+
+
+
 
 
 

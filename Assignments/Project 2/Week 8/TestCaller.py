@@ -39,28 +39,34 @@ if __name__ == "__main__":
         tri.printIV()
 
     mesh = Mesh(points, tris)
+    
+    factor = input("Scale factor in %: ")
+    mesh.scaleAlg(float(factor))
     insertAlg = input("Which algorithm should be used? (o for loop, i for linear) ")
     insertQuantity = input("How often should the subdivision algorithm be performed? ")
     iQ = int(insertQuantity)
-    if(insertAlg == "o"):
-        for i in range(0, iQ):
-            print(" ")
-            print("Loop: ", i+1)
-            mesh.connectAlg()
-            mesh.loopSubdivisionAlg()
-        mesh.normalVector()
-        #print("loop")
-    elif(insertAlg == "i"):
-        for i in range(0, iQ):
-            print(" ")
-            print("Loop: ", i+1)
-            mesh.connectAlg()
-            mesh.linearSubdivisionAlg()
-        mesh.normalVector()
-        #print("linear")
-    else:
-        print("INCORRECT INPUT")
+    if(iQ > 0):
+        if(insertAlg == "o"):
+            for i in range(0, iQ):
+                print(" ")
+                print("Loop: ", i+1)
+                mesh.connectAlg()
+                mesh.loopSubdivisionAlg()
+            mesh.normalVector()
+            #print("loop")
+        elif(insertAlg == "i"):
+            for i in range(0, iQ):
+                print(" ")
+                print("Loop: ", i+1)
+                mesh.connectAlg()
+                mesh.linearSubdivisionAlg()
+            mesh.normalVector()
+            #print("linear")
+        else:
+            print("INCORRECT INPUT")
+    
 
+    """
     p1 = Vertex(1.0, 1.0, 1.0)
     p2 = Vertex(1.0, 2.0, 1.0)
     p3 = Vertex(1.0, 1.0, 2.0)
@@ -80,6 +86,7 @@ if __name__ == "__main__":
     t3 = Triangle(2, 1, 0)
     ts.append(t3)   
     mesh2 = Mesh(ps, ts)
+    """
 
     fig = plt.figure(figsize=(6,6))
     ax = fig.add_subplot(111, projection='3d')
