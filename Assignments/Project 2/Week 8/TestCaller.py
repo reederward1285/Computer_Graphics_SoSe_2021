@@ -106,18 +106,3 @@ if __name__ == "__main__":
         # add polygon to the figure
         plt.gca().add_collection3d(srf)
     plt.show()
-
-
-
-
-    
-
-    
-
-
-
-
-        
-
-
-    

@@ -1,4 +1,10 @@
 import os
+import sys
+import matplotlib
+matplotlib.use('Qt5Agg')
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
+from matplotlib.figure import Figure
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 
@@ -6,30 +12,40 @@ from PyQt5.QtWidgets import QFileDialog
 class Ui_Project2_GUI(object):
     def setupUi(self, Project2_GUI):
         Project2_GUI.setObjectName("Project2_GUI")
-        Project2_GUI.resize(390, 280)
+        Project2_GUI.setGeometry(100,100,600,400)
+
         self.button_ImportObjFile = QtWidgets.QPushButton(Project2_GUI)
         self.button_ImportObjFile.setGeometry(QtCore.QRect(10, 10, 80, 22))
         self.button_ImportObjFile.setObjectName("button_ImportObjFile")
+
         self.button_PerformSubdivision = QtWidgets.QPushButton(Project2_GUI)
         self.button_PerformSubdivision.setGeometry(QtCore.QRect(220, 220, 80, 22))
         self.button_PerformSubdivision.setObjectName("button_PerformSubdivision")
+
         self.label_ObjFileName = QtWidgets.QLabel(Project2_GUI)
         self.label_ObjFileName.setGeometry(QtCore.QRect(150, 15, 101, 16))
         self.label_ObjFileName.setObjectName("label_ObjFileName")
+
         self.spinBox_NumOfSubdivisions = QtWidgets.QSpinBox(Project2_GUI)
         self.spinBox_NumOfSubdivisions.setGeometry(QtCore.QRect(220, 120, 91, 22))
         self.spinBox_NumOfSubdivisions.setObjectName("spinBox_NumOfSubdivisions")
+
         self.comboBox_TypeOfSubdivision = QtWidgets.QComboBox(Project2_GUI)
         self.comboBox_TypeOfSubdivision.setGeometry(QtCore.QRect(220, 90, 91, 22))
         self.comboBox_TypeOfSubdivision.setObjectName("comboBox_TypeOfSubdivision")
         self.comboBox_TypeOfSubdivision.addItem("")
         self.comboBox_TypeOfSubdivision.addItem("")
+
         self.label_2 = QtWidgets.QLabel(Project2_GUI)
         self.label_2.setGeometry(QtCore.QRect(30, 120, 121, 16))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Project2_GUI)
         self.label_3.setGeometry(QtCore.QRect(30, 90, 101, 16))
         self.label_3.setObjectName("label_3")
+
+        # Add 3D Viewer to application-window (Project_GUI)
+        self.view3d = QtWidgets.
+
 
         self.retranslateUi(Project2_GUI)
         QtCore.QMetaObject.connectSlotsByName(Project2_GUI)
@@ -71,5 +87,5 @@ if __name__ == "__main__":
     Project2_GUI = QtWidgets.QWidget()
     ui = Ui_Project2_GUI()
     ui.setupUi(Project2_GUI)
-    Project2_GUI.show()
+    Project2_GUI.showMaximized()
     sys.exit(app.exec_())
