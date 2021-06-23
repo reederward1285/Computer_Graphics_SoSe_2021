@@ -1,17 +1,15 @@
 import os
 import sys
 import matplotlib
-matplotlib.use('Qt5Agg')
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-import sys
 from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QApplication, QWidget)
+from caller import Caller
 
 sys.path.append(".")
-from caller import Caller
+
 
 class Ui_Project2_GUI(object):
 

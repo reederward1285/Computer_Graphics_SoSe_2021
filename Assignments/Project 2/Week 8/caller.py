@@ -1,7 +1,6 @@
 from triangle import Triangle
 from vertex import Vertex
 from mesh import Mesh
-
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
