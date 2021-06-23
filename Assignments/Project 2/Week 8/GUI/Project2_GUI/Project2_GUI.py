@@ -83,10 +83,14 @@ class Ui_Project2_GUI(object):
         self.spinBox_Scale.setValue(100)
         
 
-        
-
         self.retranslateUi(Project2_GUI)
         QtCore.QMetaObject.connectSlotsByName(Project2_GUI)
+
+    #class MplCanvas(FigureCanvasQTAgg):
+     #   def __init__(self, parent=None):
+      #      f
+       #         super().__init__(figure=figure)
+
 
     def retranslateUi(self, Project2_GUI):
         _translate = QtCore.QCoreApplication.translate
