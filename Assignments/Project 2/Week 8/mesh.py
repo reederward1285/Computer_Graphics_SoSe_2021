@@ -224,19 +224,47 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
-        def xscaleAlg(self, factor):
-            if (factor > 0):
-                scalefactor = factor/100.0 -1
-                center = Vertex(0, 0, 0)
-                for v in self.pts:
-                    center += v
-                center = center / len(self.pts)
-                for i in range(0, len(self.pts)):
-                    scalevertex = self.pts[i] - center
-                    expansion =  scalevertex * scalefactor
-                    self.pts[i].xyz[0] = self.pts[i].xyz[0] + expansion
-            else:
-                print("Input must be greater than 0!")
+    def xscaleAlg(self, factor):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = 0
+            for v in self.pts:
+                center += v.xyz[0]
+            center = center / len(self.pts)
+            for i in range(0, len(self.pts)):
+                scalex = self.pts[i].xyz[0] - center
+                expansion =  scalex * scalefactor
+                self.pts[i].xyz[0] = self.pts[i].xyz[0] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+    def yscaleAlg(self, factor):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = 0
+            for v in self.pts:
+                center += v.xyz[1]
+            center = center / len(self.pts)
+            for i in range(0, len(self.pts)):
+                scalex = self.pts[i].xyz[1] - center
+                expansion =  scalex * scalefactor
+                self.pts[i].xyz[1] = self.pts[i].xyz[1] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+    def zscaleAlg(self, factor):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = 0
+            for v in self.pts:
+                center += v.xyz[2]
+            center = center / len(self.pts)
+            for i in range(0, len(self.pts)):
+                scalex = self.pts[i].xyz[2] - center
+                expansion =  scalex * scalefactor
+                self.pts[i].xyz[2] = self.pts[i].xyz[2] + expansion
+        else:
+            print("Input must be greater than 0!")
 
 
 

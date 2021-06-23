@@ -1,12 +1,22 @@
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+import sys
+from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QApplication, QWidget)
 
+sys.path.append(".")
+from caller import Caller
 
 class Ui_Project2_GUI(object):
+
+        
+
     def setupUi(self, Project2_GUI):
+        self.caller = Caller()
+        
+
         Project2_GUI.setObjectName("Project2_GUI")
-        Project2_GUI.resize(390, 280)
+        Project2_GUI.resize(780, 560)
         self.button_ImportObjFile = QtWidgets.QPushButton(Project2_GUI)
         self.button_ImportObjFile.setGeometry(QtCore.QRect(10, 10, 80, 22))
         self.button_ImportObjFile.setObjectName("button_ImportObjFile")
@@ -31,6 +41,37 @@ class Ui_Project2_GUI(object):
         self.label_3.setGeometry(QtCore.QRect(30, 90, 101, 16))
         self.label_3.setObjectName("label_3")
 
+        #scale
+        self.button_PerformScale = QtWidgets.QPushButton(Project2_GUI)
+        self.button_PerformScale.setGeometry(QtCore.QRect(620, 220, 80, 22))
+        self.button_PerformScale.setObjectName("button_PerformScale")
+
+        self.comboBox_TypeOfScale = QtWidgets.QComboBox(Project2_GUI)
+        self.comboBox_TypeOfScale.setGeometry(QtCore.QRect(620, 90, 91, 22))
+        self.comboBox_TypeOfScale.setObjectName("comboBox_TypeOfScale")
+        self.comboBox_TypeOfScale.addItem("")
+        self.comboBox_TypeOfScale.addItem("")
+        self.comboBox_TypeOfScale.addItem("")
+        self.comboBox_TypeOfScale.addItem("")
+
+        self.label_4 = QtWidgets.QLabel(Project2_GUI)
+        self.label_4.setGeometry(QtCore.QRect(430, 90, 101, 16))
+        self.label_4.setObjectName("label_4")
+
+        self.label_5 = QtWidgets.QLabel(Project2_GUI)
+        self.label_5.setGeometry(QtCore.QRect(430, 120, 121, 16))
+        self.label_5.setObjectName("label_5")
+
+        self.spinBox_Scale = QtWidgets.QSpinBox(Project2_GUI)
+        self.spinBox_Scale.setGeometry(QtCore.QRect(620, 120, 91, 22))
+        self.spinBox_Scale.setObjectName("spinBox_Scale")
+        self.spinBox_Scale.setMinimum(1)
+        self.spinBox_Scale.setMaximum(1000)
+        self.spinBox_Scale.setValue(100)
+        
+
+        
+
         self.retranslateUi(Project2_GUI)
         QtCore.QMetaObject.connectSlotsByName(Project2_GUI)
 
@@ -45,6 +86,17 @@ class Ui_Project2_GUI(object):
         self.label_2.setText(_translate("Project2_GUI", "Number of Subdivisions:"))
         self.label_3.setText(_translate("Project2_GUI", "Subdivision Type:"))
 
+        #scale
+        self.button_PerformScale.setText(_translate("Project2_GUI", "Perform Scaling"))
+
+        self.comboBox_TypeOfScale.setItemText(0, _translate("Project2_GUI", "all"))
+        self.comboBox_TypeOfScale.setItemText(1, _translate("Project2_GUI", "x coordinates"))
+        self.comboBox_TypeOfScale.setItemText(2, _translate("Project2_GUI", "y coordinates"))
+        self.comboBox_TypeOfScale.setItemText(3, _translate("Project2_GUI", "z coordinates"))
+
+        self.label_4.setText(_translate("Project2_GUI", "Scaling Type:"))
+        self.label_5.setText(_translate("Project2_GUI", "Scaling in %: "))
+
         # autosize labels
         self.label_ObjFileName.adjustSize()
         self.label_2.adjustSize()
@@ -52,6 +104,17 @@ class Ui_Project2_GUI(object):
         self.button_ImportObjFile.adjustSize()
         self.button_ImportObjFile.clicked.connect(self.importObjFile)
         self.button_PerformSubdivision.adjustSize()
+
+        self.button_PerformSubdivision.clicked.connect(self.subObject)
+
+        #scale
+        self.button_PerformScale.adjustSize()
+        self.label_4.adjustSize()
+        self.label_5.adjustSize()
+
+        self.button_PerformScale.clicked.connect(self.scaleObject)
+
+        
 
     def importObjFile(self):
         filename = self.openFileNameDialog()
@@ -63,6 +126,23 @@ class Ui_Project2_GUI(object):
         fileName = os.path.basename(fileName[0])
         print(fileName)
         self.label_ObjFileName.setText(fileName)
+
+        #self.caller.showObject()
+        self.caller.updateObject()
+
+    def scaleObject(self):
+        axyz = self.comboBox_TypeOfScale.currentIndex()
+        factor = self.spinBox_Scale.value()
+        self.caller.scaleMesh(factor, axyz)
+        self.caller.showObject()
+        #self.caller.updateObject()
+
+    def subObject(self):
+        insertAlg = self.comboBox_TypeOfSubdivision.currentIndex()
+        insertQuantity = self.spinBox_NumOfSubdivisions.value()
+        self.caller.subMesh(insertAlg, insertQuantity)
+        self.caller.showObject()
+    
 
 
 if __name__ == "__main__":
