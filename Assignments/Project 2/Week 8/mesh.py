@@ -210,6 +210,7 @@ class Mesh:
             #save normal vector in Mesh class vector
             self.nvec.append(normalvec)
 
+    #scale whole object
     def scaleAlg(self, factor):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -224,6 +225,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #scale whole object in x direction
     def xscaleAlg(self, factor):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -238,6 +240,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #scale whole object in y direction
     def yscaleAlg(self, factor):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -252,6 +255,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #scale whole object in z direction
     def zscaleAlg(self, factor):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -266,6 +270,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #manipulate one point
     def maniAlg(self, factor, point):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -279,6 +284,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #manipulate one point in x direction
     def xmaniAlg(self, factor, point):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -292,6 +298,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #manipulate one point in y direction
     def ymaniAlg(self, factor, point):
         if (factor > 0):
             scalefactor = factor/100.0 -1
@@ -305,6 +312,7 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    #manipulate one point in z direction
     def zmaniAlg(self, factor, point):
         if (factor > 0):
             scalefactor = factor/100.0 -1

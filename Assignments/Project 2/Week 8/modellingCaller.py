@@ -94,6 +94,15 @@ class ModellingCaller:
             print("INCORRECT INPUT")
 
     def showObject(self):
+
+        #calculate axis length
+        h = self.highestPoint()
+        l = self.lowestPoint() 
+        d = (h - l) / 10
+        h = h + d
+        l = l - d
+        
+
         fig = plt.figure(figsize=(6,6))
         ax = fig.add_subplot(111, projection='3d')
         for i in range(0, len(self.mesh.tris)):
@@ -112,7 +121,54 @@ class ModellingCaller:
             srf = Poly3DCollection(verts, alpha=.75, facecolor='#800000')
             # add polygon to the figure
             plt.gca().add_collection3d(srf)
+            """
+            plt.xlabel("x", 
+                family='serif', 
+                color='r', 
+                weight='normal', 
+                size = 14,
+                labelpad = 6)
+            plt.ylabel("y", 
+                family='serif', 
+                color='r', 
+                weight='normal', 
+                size = 14,
+                labelpad = 6)
+                """
+            #labeling
+            ax.set_xlim(l, h)
+            ax.set_ylim(l, h)
+            ax.set_zlim(l, h)
+            ax.set_xlabel('X axis')
+            ax.set_ylabel('Y axis')
+            ax.set_zlabel('Z axis')
+            
         plt.show()
+
+    #find highest point
+    def highestPoint(self):
+        h = -100000
+        for p in self.mesh.pts:
+            if(p.xyz[0]>h):
+                h = p.xyz[0]
+            if(p.xyz[1]>h):
+                h = p.xyz[1]
+            if(p.xyz[2]>h):
+                h = p.xyz[2]
+        return h
+
+    #find lowest point
+    def lowestPoint(self):
+        l = 100000
+        for p in self.mesh.pts:
+            if(p.xyz[0]<l):
+                l = p.xyz[0]
+            if(p.xyz[1]<l):
+                l = p.xyz[1]
+            if(p.xyz[2]<l):
+                l = p.xyz[2]
+        return l
+
 
     #def updateObject(self):
         #plt.draw()
