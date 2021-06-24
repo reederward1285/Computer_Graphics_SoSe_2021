@@ -5,18 +5,18 @@ import sys
 from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QApplication, QWidget)
 
 sys.path.append(".")
-from caller import Caller
+from modellingCaller import ModellingCaller
 
 class Ui_Project2_GUI(object):
 
         
 
     def setupUi(self, Project2_GUI):
-        self.caller = Caller()
+        self.mcaller = ModellingCaller()
         
 
         Project2_GUI.setObjectName("Project2_GUI")
-        Project2_GUI.resize(780, 560)
+        Project2_GUI.resize(1380, 960)
         self.button_ImportObjFile = QtWidgets.QPushButton(Project2_GUI)
         self.button_ImportObjFile.setGeometry(QtCore.QRect(10, 10, 80, 22))
         self.button_ImportObjFile.setObjectName("button_ImportObjFile")
@@ -68,7 +68,45 @@ class Ui_Project2_GUI(object):
         self.spinBox_Scale.setMinimum(1)
         self.spinBox_Scale.setMaximum(1000)
         self.spinBox_Scale.setValue(100)
+
+        #manipulate
+        self.button_PerformMani = QtWidgets.QPushButton(Project2_GUI)
+        self.button_PerformMani.setGeometry(QtCore.QRect(1020, 220, 80, 22))
+        self.button_PerformMani.setObjectName("button_PerformMani")
         
+        self.comboBox_TypeOfMani = QtWidgets.QComboBox(Project2_GUI)
+        self.comboBox_TypeOfMani.setGeometry(QtCore.QRect(1020, 90, 91, 22))
+        self.comboBox_TypeOfMani.setObjectName("comboBox_TypeOfMani")
+        self.comboBox_TypeOfMani.addItem("")
+        self.comboBox_TypeOfMani.addItem("")
+        self.comboBox_TypeOfMani.addItem("")
+        self.comboBox_TypeOfMani.addItem("")
+
+        self.label_6 = QtWidgets.QLabel(Project2_GUI)
+        self.label_6.setGeometry(QtCore.QRect(830, 90, 101, 16))
+        self.label_6.setObjectName("label_6")
+
+        self.label_7 = QtWidgets.QLabel(Project2_GUI)
+        self.label_7.setGeometry(QtCore.QRect(830, 120, 121, 16))
+        self.label_7.setObjectName("label_7")
+
+        self.label_8 = QtWidgets.QLabel(Project2_GUI)
+        self.label_8.setGeometry(QtCore.QRect(830, 150, 121, 16))
+        self.label_8.setObjectName("label_8")
+
+        self.spinBox_Pos = QtWidgets.QSpinBox(Project2_GUI)
+        self.spinBox_Pos.setGeometry(QtCore.QRect(1020, 120, 91, 22))
+        self.spinBox_Pos.setObjectName("spinBox_Pos")
+        self.spinBox_Pos.setMinimum(1)
+        self.spinBox_Pos.setMaximum(1000)
+        self.spinBox_Pos.setValue(100)
+
+        self.spinBox_Point = QtWidgets.QSpinBox(Project2_GUI)
+        self.spinBox_Point.setGeometry(QtCore.QRect(1020, 150, 91, 22))
+        self.spinBox_Point.setObjectName("spinBox_Point")
+        self.spinBox_Point.setMinimum(-1)
+        self.spinBox_Point.setMaximum(-1)
+        self.spinBox_Point.setValue(-1)
 
         
 
@@ -97,6 +135,19 @@ class Ui_Project2_GUI(object):
         self.label_4.setText(_translate("Project2_GUI", "Scaling Type:"))
         self.label_5.setText(_translate("Project2_GUI", "Scaling in %: "))
 
+        #manipulate
+        self.button_PerformMani.setText(_translate("Project2_GUI", "Perform Manipulation"))
+
+        self.comboBox_TypeOfMani.setItemText(0, _translate("Project2_GUI", "all"))
+        self.comboBox_TypeOfMani.setItemText(1, _translate("Project2_GUI", "x coordinate"))
+        self.comboBox_TypeOfMani.setItemText(2, _translate("Project2_GUI", "y coordinate"))
+        self.comboBox_TypeOfMani.setItemText(3, _translate("Project2_GUI", "z coordinate"))
+
+        self.label_6.setText(_translate("Project2_GUI", "Manipulation Type:"))
+        self.label_7.setText(_translate("Project2_GUI", "Manipulation in %: "))
+        self.label_8.setText(_translate("Project2_GUI", "Point: "))
+
+
         # autosize labels
         self.label_ObjFileName.adjustSize()
         self.label_2.adjustSize()
@@ -114,6 +165,15 @@ class Ui_Project2_GUI(object):
 
         self.button_PerformScale.clicked.connect(self.scaleObject)
 
+        #manipulate
+        self.button_PerformMani.adjustSize()
+        self.label_6.adjustSize()
+        self.label_7.adjustSize()
+        self.label_8.adjustSize()
+
+        self.button_PerformMani.clicked.connect(self.maniPoint)
+
+
         
 
     def importObjFile(self):
@@ -127,22 +187,40 @@ class Ui_Project2_GUI(object):
         print(fileName)
         self.label_ObjFileName.setText(fileName)
 
-        #self.caller.showObject()
-        self.caller.updateObject()
+        #self.mcaller.showObject()
+        self.mcaller.updateObject()
 
+        self.spinBox_Point.setMinimum(0)
+        self.spinBox_Point.setMaximum(len(self.mcaller.mesh.pts)-1)
+        self.spinBox_Point.setValue(0)
+
+    #scale object (all, x, y or z)
     def scaleObject(self):
         axyz = self.comboBox_TypeOfScale.currentIndex()
         factor = self.spinBox_Scale.value()
-        self.caller.scaleMesh(factor, axyz)
-        self.caller.showObject()
-        #self.caller.updateObject()
+        self.mcaller.scaleMesh(factor, axyz)
+        self.mcaller.showObject()
+        #self.mcaller.updateObject()
 
+    #subdivide object
     def subObject(self):
         insertAlg = self.comboBox_TypeOfSubdivision.currentIndex()
         insertQuantity = self.spinBox_NumOfSubdivisions.value()
-        self.caller.subMesh(insertAlg, insertQuantity)
-        self.caller.showObject()
+        self.mcaller.subMesh(insertAlg, insertQuantity)
+        self.mcaller.showObject()
+
+        self.spinBox_Point.setMinimum(0)
+        self.spinBox_Point.setMaximum(len(self.mcaller.mesh.pts)-1)
+        self.spinBox_Point.setValue(0)
     
+    #manipulate one point
+    def maniPoint(self):
+        axyz = self.comboBox_TypeOfMani.currentIndex()
+        factor = self.spinBox_Pos.value()
+        point = self.spinBox_Point.value()
+        self.mcaller.maniMesh(axyz, factor, point)
+        self.mcaller.showObject()
+
 
 
 if __name__ == "__main__":

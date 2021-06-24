@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d import axes3d
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib import style
 
-class Caller:
+class ModellingCaller:
 
     def __init__(self):
         self.tris = []
@@ -76,6 +76,22 @@ class Caller:
                 #print("linear")
             else:
                 print("INCORRECT INPUT")
+
+    def maniMesh(self, axyz, factor, point):
+        self.axyz = axyz
+        self.factor = factor
+        self.point = point
+        print(self.factor, self.axyz, self.point)
+        if(self.axyz == 0):
+            self.mesh.maniAlg(float(self.factor), int(self.point))
+        elif(self.axyz == 1):
+            self.mesh.xmaniAlg(float(self.factor), int(self.point))
+        elif(self.axyz == 2):
+            self.mesh.ymaniAlg(float(self.factor), int(self.point))
+        elif(self.axyz == 3):
+            self.mesh.zmaniAlg(float(self.factor), int(self.point))
+        else:
+            print("INCORRECT INPUT")
 
     def showObject(self):
         fig = plt.figure(figsize=(6,6))

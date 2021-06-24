@@ -266,6 +266,58 @@ class Mesh:
         else:
             print("Input must be greater than 0!")
 
+    def maniAlg(self, factor, point):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = Vertex(0, 0, 0)
+            for v in self.pts:
+                center += v
+            center = center / len(self.pts)
+            scalevertex = self.pts[point] - center
+            expansion =  scalevertex * scalefactor
+            self.pts[point] = self.pts[point] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+    def xmaniAlg(self, factor, point):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = 0
+            for v in self.pts:
+                center += v.xyz[0]
+            center = center / len(self.pts)
+            scalex = self.pts[point].xyz[0] - center
+            expansion =  scalex * scalefactor
+            self.pts[point].xyz[0] = self.pts[point].xyz[0] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+    def ymaniAlg(self, factor, point):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = 0
+            for v in self.pts:
+                center += v.xyz[1]
+            center = center / len(self.pts)
+            scalex = self.pts[point].xyz[1] - center
+            expansion =  scalex * scalefactor
+            self.pts[point].xyz[1] = self.pts[point].xyz[1] + expansion
+        else:
+            print("Input must be greater than 0!")
+
+    def zmaniAlg(self, factor, point):
+        if (factor > 0):
+            scalefactor = factor/100.0 -1
+            center = 0
+            for v in self.pts:
+                center += v.xyz[2]
+            center = center / len(self.pts)
+            scalex = self.pts[point].xyz[2] - center
+            expansion =  scalex * scalefactor
+            self.pts[point].xyz[2] = self.pts[point].xyz[2] + expansion
+        else:
+            print("Input must be greater than 0!")
+
 
 
 
