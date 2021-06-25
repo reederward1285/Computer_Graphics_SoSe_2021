@@ -47,7 +47,7 @@ vector<vector<float>> ReadObj:: ReadPoints( string fname){
     string key;
     float x, y, z;
     while( file >> key >> x >> y >> z){
-        //getline( file, line);
+
         //Output of the data for vertex and faces on the console
 
         cout << key <<", "<< x <<", "<< y <<", "<< z << endl;
