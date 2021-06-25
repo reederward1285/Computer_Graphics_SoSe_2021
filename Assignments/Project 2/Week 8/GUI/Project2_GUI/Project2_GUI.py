@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QAp
 
 sys.path.append(".")
 from modellingCaller import ModellingCaller
-import readObj
 
 class Ui_Project2_GUI(object):
 
@@ -204,7 +203,7 @@ class Ui_Project2_GUI(object):
 
     def importObjFile(self):
         filename = self.openFileNameDialog()
-        readObj.readObj.ReadBlend(self, str(filename))
+        self.mcaller.ReadBlend(str(filename))
 
 
     def openFileNameDialog(self):

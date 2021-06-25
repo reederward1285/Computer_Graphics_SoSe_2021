@@ -1,6 +1,6 @@
 import math
 from triangle import Triangle
-import vertex
+from vertex import vertex
 
 class Mesh:    
     def __init__(self, pts, tris):

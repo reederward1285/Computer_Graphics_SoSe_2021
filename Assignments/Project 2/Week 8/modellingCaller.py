@@ -1,6 +1,7 @@
 from triangle import Triangle
 from vertex import vertex
 from mesh import Mesh
+import re
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,34 +15,64 @@ class ModellingCaller:
         self.tris = []
         self.points = []
 
+    def ReadBlend(self, fname):
+        """imports an OBJ file, and populates tris and points
+        """
+        file = open(fname, "r")
+
+        currentLine = file.readline()
+
+        while (currentLine):
+            # parse out numbers from the string
+            numbers = re.findall(r'\d+(?:\.\d+)?', currentLine)
+
+            # find 'v' character and populate vertex information
+            if (currentLine.find("v", 0, len(currentLine)) != -1):
+                # make a new vertex object out of it
+                self.newVertex = vertex(float(numbers[0]), float(numbers[1]), float(numbers[2]))
+                self.points.append(self.newVertex)
+                                
+            # find 'f' character and populate face information
+            elif (currentLine.find("f", 0, len(currentLine)) != -1):
+                self.newTriangle = Triangle(int(numbers[0]), int(numbers[1]), int(numbers[2]))
+                self.tris.append(self.newTriangle)
+
+            currentLine = file.readline()
+
+        for point in self.points:
+            point.printXYZ()
+
+        for tri in self.tris:
+            tri.printIV()
+
     def createMesh(self):
         """...import...
         """
         #! must be replaced by importcode
 
         # create points and safe in list
-        point0 = vertex(0.0, 0.0, 0.0)
-        self.points.append(self.point0)
-        point1 = vertex(8.0, 0.0, 0.0)
-        self.points.append(self.point1)
-        point2 = vertex(0.0, 8.0, 0.0)
-        self.points.append(self.point2)
-        point3 = vertex(0.0, 0.0, 8.0)
-        self.points.append(self.point3)
-        for point in self.points:
-            point.printXYZ()
+        # point0 = vertex(0.0, 0.0, 0.0)
+        # self.points.append(self.point0)
+        # point1 = vertex(8.0, 0.0, 0.0)
+        # self.points.append(self.point1)
+        # point2 = vertex(0.0, 8.0, 0.0)
+        # self.points.append(self.point2)
+        # point3 = vertex(0.0, 0.0, 8.0)
+        # self.points.append(self.point3)
+        # for point in self.points:
+        #     point.printXYZ()
 
         # create triangles and safe in list
-        tri0 = Triangle(0, 1, 3)
-        self.tris.append(self.tri0)
-        tri1 = Triangle(1, 2, 3)
-        self.tris.append(self.tri1)
-        tri2 = Triangle(2, 0, 3)
-        self.tris.append(self.tri2)
-        tri3 = Triangle(2, 1, 0)
-        self.tris.append(self.tri3)    
-        for tri in self.tris:
-            tri.printIV()
+        # tri0 = Triangle(0, 1, 3)
+        # self.tris.append(self.tri0)
+        # tri1 = Triangle(1, 2, 3)
+        # self.tris.append(self.tri1)
+        # tri2 = Triangle(2, 0, 3)
+        # self.tris.append(self.tri2)
+        # tri3 = Triangle(2, 1, 0)
+        # self.tris.append(self.tri3)    
+        # for tri in self.tris:
+        #     tri.printIV()
 
         self.mesh = Mesh(self.points, self.tris)
 
