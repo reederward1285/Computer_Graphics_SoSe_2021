@@ -93,7 +93,7 @@ if __name__ == "__main__":
         #text = "hallo"
         #annot.set_text(text)
         #ax.text(m[i,0],m[i,1],m[i,2],  '%s' % (str(i)), size=20, zorder=1,  color='k')
-        ax.text(mesh.pts[tri.iv[0]].xyz[0],mesh.pts[tri.iv[0]].xyz[1],mesh.pts[tri.iv[0]].xyz[2],  '%s' % (str("hallo")), size=5, zorder=1,  color='k')
+        ax.text(mesh.pts[tri.iv[0]].xyz[0],mesh.pts[tri.iv[0]].xyz[1],mesh.pts[tri.iv[0]].xyz[2],  '%s' % (str("hallo")), size=5 , zorder=1,  color='k')
         
         x2=np.array([mesh.pts[tri.iv[0]].xyz[0], mesh.pts[tri.iv[1]].xyz[0], mesh.pts[tri.iv[2]].xyz[0], mesh.pts[tri.iv[0]].xyz[0]])
         y2=np.array([mesh.pts[tri.iv[0]].xyz[1], mesh.pts[tri.iv[1]].xyz[1], mesh.pts[tri.iv[2]].xyz[1], mesh.pts[tri.iv[0]].xyz[1]])

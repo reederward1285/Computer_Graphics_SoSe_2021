@@ -14,6 +14,12 @@ class ModellingCaller:
         self.tris = []
         self.points = []
 
+    def createMesh(self):
+        """...import...
+        """
+        #! must be replaced by importcode
+
+        # create points and safe in list
         self.point0 = Vertex(0.0, 0.0, 0.0)
         self.points.append(self.point0)
         self.point1 = Vertex(8.0, 0.0, 0.0)
@@ -25,6 +31,7 @@ class ModellingCaller:
         for point in self.points:
             point.printXYZ()
 
+        # create triangles and safe in list
         self.tri0 = Triangle(0, 1, 3)
         self.tris.append(self.tri0)
         self.tri1 = Triangle(1, 2, 3)
@@ -39,6 +46,11 @@ class ModellingCaller:
         self.mesh = Mesh(self.points, self.tris)
 
     def scaleMesh(self, factor, axyz):
+        """scale Object (all; x, y or z coordinates)
+        Args: 
+            factor(float): calculate scalefactor
+            axyz(int): all; x, y or z coordinates
+        """
         self.factor = factor
         self.axyz = axyz
         print(self.factor, self.axyz)
@@ -54,6 +66,11 @@ class ModellingCaller:
             print("INCORRECT INPUT")
 
     def subMesh(self, insertAlg, insertQuantity):
+        """subdivide object (linear or loop)
+        Args:
+            insertAlg(int): linear or loop
+            insertQuantity(int): number, how often the subdivision algorithm should be performed
+        """
         self.insertAlg = insertAlg
         self.insertQuantity = insertQuantity
         iQ = int(insertQuantity)
@@ -78,6 +95,12 @@ class ModellingCaller:
                 print("INCORRECT INPUT")
 
     def maniMesh(self, axyz, factor, point):
+        """manipulate one point (in all, x, y or z direction)
+        Args: 
+            factor(float): calculate scalefactor
+            axyz(int): all; x, y or z coordinates
+            point(int): point to be manipulated
+        """
         self.axyz = axyz
         self.factor = factor
         self.point = point
@@ -94,6 +117,8 @@ class ModellingCaller:
             print("INCORRECT INPUT")
 
     def showObject(self):
+        """show an object in a coordinate system
+        """
 
         #calculate axis length
         h = self.highestPoint()
@@ -101,41 +126,34 @@ class ModellingCaller:
         d = (h - l) / 10
         h = h + d
         l = l - d
-        
 
         fig = plt.figure(figsize=(6,6))
         ax = fig.add_subplot(111, projection='3d')
+
         for i in range(0, len(self.mesh.tris)):
+
+            # draw points
             x1=np.array([self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[0], self.mesh.pts[self.mesh.tris[i].iv[1]].xyz[0], self.mesh.pts[self.mesh.tris[i].iv[2]].xyz[0]])
             y1=np.array([self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[1], self.mesh.pts[self.mesh.tris[i].iv[1]].xyz[1], self.mesh.pts[self.mesh.tris[i].iv[2]].xyz[1]])
             z1=np.array([self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[2], self.mesh.pts[self.mesh.tris[i].iv[1]].xyz[2], self.mesh.pts[self.mesh.tris[i].iv[2]].xyz[2]])  
-            ax.scatter(x1,y1,z1)#
+            ax.scatter(x1,y1,z1)
+
+            # draw lines
             ax.text(self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[0],self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[1],self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[2],  '%s' % (str(self.mesh.tris[i].iv[0])), size=10, zorder=1,  color='k')
             x2=np.array([self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[0], self.mesh.pts[self.mesh.tris[i].iv[1]].xyz[0], self.mesh.pts[self.mesh.tris[i].iv[2]].xyz[0], self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[0]])
             y2=np.array([self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[1], self.mesh.pts[self.mesh.tris[i].iv[1]].xyz[1], self.mesh.pts[self.mesh.tris[i].iv[2]].xyz[1], self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[1]])
             z2=np.array([self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[2], self.mesh.pts[self.mesh.tris[i].iv[1]].xyz[2], self.mesh.pts[self.mesh.tris[i].iv[2]].xyz[2], self.mesh.pts[self.mesh.tris[i].iv[0]].xyz[2]]) 
             ax.plot(x2, y2, z2, color = 'g')
+
+            # draw surfaces
             # create vertices from points
             verts = [list(zip(x1, y1, z1))]
             # create 3d polygons and specify parameters
             srf = Poly3DCollection(verts, alpha=.75, facecolor='#800000')
             # add polygon to the figure
             plt.gca().add_collection3d(srf)
-            """
-            plt.xlabel("x", 
-                family='serif', 
-                color='r', 
-                weight='normal', 
-                size = 14,
-                labelpad = 6)
-            plt.ylabel("y", 
-                family='serif', 
-                color='r', 
-                weight='normal', 
-                size = 14,
-                labelpad = 6)
-                """
-            #labeling
+
+            # labeling
             ax.set_xlim(l, h)
             ax.set_ylim(l, h)
             ax.set_zlim(l, h)
@@ -145,8 +163,9 @@ class ModellingCaller:
             
         plt.show()
 
-    #find highest point
     def highestPoint(self):
+        """find highest point
+        """
         h = -100000
         for p in self.mesh.pts:
             if(p.xyz[0]>h):
@@ -157,8 +176,9 @@ class ModellingCaller:
                 h = p.xyz[2]
         return h
 
-    #find lowest point
     def lowestPoint(self):
+        """find lowest point
+        """
         l = 100000
         for p in self.mesh.pts:
             if(p.xyz[0]<l):

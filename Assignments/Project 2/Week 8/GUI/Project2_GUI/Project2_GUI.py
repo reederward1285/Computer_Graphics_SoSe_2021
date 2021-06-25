@@ -14,26 +14,37 @@ class Ui_Project2_GUI(object):
     def setupUi(self, Project2_GUI):
         self.mcaller = ModellingCaller()
         
-
+        # window
         Project2_GUI.setObjectName("Project2_GUI")
         Project2_GUI.resize(1380, 960)
+
+        # import
         self.button_ImportObjFile = QtWidgets.QPushButton(Project2_GUI)
         self.button_ImportObjFile.setGeometry(QtCore.QRect(10, 10, 80, 22))
         self.button_ImportObjFile.setObjectName("button_ImportObjFile")
-        self.button_PerformSubdivision = QtWidgets.QPushButton(Project2_GUI)
-        self.button_PerformSubdivision.setGeometry(QtCore.QRect(220, 220, 80, 22))
-        self.button_PerformSubdivision.setObjectName("button_PerformSubdivision")
+
         self.label_ObjFileName = QtWidgets.QLabel(Project2_GUI)
         self.label_ObjFileName.setGeometry(QtCore.QRect(150, 15, 101, 16))
         self.label_ObjFileName.setObjectName("label_ObjFileName")
+
+        # subdivision
+        self.button_PerformSubdivision = QtWidgets.QPushButton(Project2_GUI)
+        self.button_PerformSubdivision.setGeometry(QtCore.QRect(220, 220, 80, 22))
+        self.button_PerformSubdivision.setObjectName("button_PerformSubdivision")
+        self.button_PerformSubdivision.setEnabled(False)       
+
         self.spinBox_NumOfSubdivisions = QtWidgets.QSpinBox(Project2_GUI)
         self.spinBox_NumOfSubdivisions.setGeometry(QtCore.QRect(220, 120, 91, 22))
         self.spinBox_NumOfSubdivisions.setObjectName("spinBox_NumOfSubdivisions")
+        self.spinBox_NumOfSubdivisions.setEnabled(False)
+
         self.comboBox_TypeOfSubdivision = QtWidgets.QComboBox(Project2_GUI)
         self.comboBox_TypeOfSubdivision.setGeometry(QtCore.QRect(220, 90, 91, 22))
         self.comboBox_TypeOfSubdivision.setObjectName("comboBox_TypeOfSubdivision")
         self.comboBox_TypeOfSubdivision.addItem("")
         self.comboBox_TypeOfSubdivision.addItem("")
+        self.comboBox_TypeOfSubdivision.setEnabled(False)
+
         self.label_2 = QtWidgets.QLabel(Project2_GUI)
         self.label_2.setGeometry(QtCore.QRect(30, 120, 121, 16))
         self.label_2.setObjectName("label_2")
@@ -41,10 +52,11 @@ class Ui_Project2_GUI(object):
         self.label_3.setGeometry(QtCore.QRect(30, 90, 101, 16))
         self.label_3.setObjectName("label_3")
 
-        #scale
+        # scale
         self.button_PerformScale = QtWidgets.QPushButton(Project2_GUI)
         self.button_PerformScale.setGeometry(QtCore.QRect(620, 220, 80, 22))
         self.button_PerformScale.setObjectName("button_PerformScale")
+        self.button_PerformScale.setEnabled(False)
 
         self.comboBox_TypeOfScale = QtWidgets.QComboBox(Project2_GUI)
         self.comboBox_TypeOfScale.setGeometry(QtCore.QRect(620, 90, 91, 22))
@@ -53,6 +65,7 @@ class Ui_Project2_GUI(object):
         self.comboBox_TypeOfScale.addItem("")
         self.comboBox_TypeOfScale.addItem("")
         self.comboBox_TypeOfScale.addItem("")
+        self.comboBox_TypeOfScale.setEnabled(False)
 
         self.label_4 = QtWidgets.QLabel(Project2_GUI)
         self.label_4.setGeometry(QtCore.QRect(430, 90, 101, 16))
@@ -68,11 +81,13 @@ class Ui_Project2_GUI(object):
         self.spinBox_Scale.setMinimum(1)
         self.spinBox_Scale.setMaximum(1000)
         self.spinBox_Scale.setValue(100)
+        self.spinBox_Scale.setEnabled(False)
 
-        #manipulate
+        # manipulate
         self.button_PerformMani = QtWidgets.QPushButton(Project2_GUI)
         self.button_PerformMani.setGeometry(QtCore.QRect(1020, 220, 80, 22))
         self.button_PerformMani.setObjectName("button_PerformMani")
+        self.button_PerformMani.setEnabled(False)
         
         self.comboBox_TypeOfMani = QtWidgets.QComboBox(Project2_GUI)
         self.comboBox_TypeOfMani.setGeometry(QtCore.QRect(1020, 90, 91, 22))
@@ -81,6 +96,7 @@ class Ui_Project2_GUI(object):
         self.comboBox_TypeOfMani.addItem("")
         self.comboBox_TypeOfMani.addItem("")
         self.comboBox_TypeOfMani.addItem("")
+        self.comboBox_TypeOfMani.setEnabled(False)
 
         self.label_6 = QtWidgets.QLabel(Project2_GUI)
         self.label_6.setGeometry(QtCore.QRect(830, 90, 101, 16))
@@ -100,6 +116,7 @@ class Ui_Project2_GUI(object):
         self.spinBox_Pos.setMinimum(1)
         self.spinBox_Pos.setMaximum(1000)
         self.spinBox_Pos.setValue(100)
+        self.spinBox_Pos.setEnabled(False)
 
         self.spinBox_Point = QtWidgets.QSpinBox(Project2_GUI)
         self.spinBox_Point.setGeometry(QtCore.QRect(1020, 150, 91, 22))
@@ -107,6 +124,7 @@ class Ui_Project2_GUI(object):
         self.spinBox_Point.setMinimum(-1)
         self.spinBox_Point.setMaximum(-1)
         self.spinBox_Point.setValue(-1)
+        self.spinBox_Point.setEnabled(False)
 
         
 
@@ -116,15 +134,21 @@ class Ui_Project2_GUI(object):
     def retranslateUi(self, Project2_GUI):
         _translate = QtCore.QCoreApplication.translate
         Project2_GUI.setWindowTitle(_translate("Project2_GUI", "Project2_GUI"))
+
+        #import
         self.button_ImportObjFile.setText(_translate("Project2_GUI", "Import"))
-        self.button_PerformSubdivision.setText(_translate("Project2_GUI", "Perform Subdivision"))
         self.label_ObjFileName.setText(_translate("Project2_GUI", "[No File Chosen]"))
+
+        # subdivision
+        self.button_PerformSubdivision.setText(_translate("Project2_GUI", "Perform Subdivision"))
+        
         self.comboBox_TypeOfSubdivision.setItemText(0, _translate("Project2_GUI", "Linear"))
         self.comboBox_TypeOfSubdivision.setItemText(1, _translate("Project2_GUI", "Loop"))
+
         self.label_2.setText(_translate("Project2_GUI", "Number of Subdivisions:"))
         self.label_3.setText(_translate("Project2_GUI", "Subdivision Type:"))
 
-        #scale
+        # scale
         self.button_PerformScale.setText(_translate("Project2_GUI", "Perform Scaling"))
 
         self.comboBox_TypeOfScale.setItemText(0, _translate("Project2_GUI", "all"))
@@ -135,7 +159,7 @@ class Ui_Project2_GUI(object):
         self.label_4.setText(_translate("Project2_GUI", "Scaling Type:"))
         self.label_5.setText(_translate("Project2_GUI", "Scaling in %: "))
 
-        #manipulate
+        # manipulate
         self.button_PerformMani.setText(_translate("Project2_GUI", "Perform Manipulation"))
 
         self.comboBox_TypeOfMani.setItemText(0, _translate("Project2_GUI", "all"))
@@ -148,53 +172,69 @@ class Ui_Project2_GUI(object):
         self.label_8.setText(_translate("Project2_GUI", "Point: "))
 
 
-        # autosize labels
-        self.label_ObjFileName.adjustSize()
-        self.label_2.adjustSize()
-        self.label_3.adjustSize()
+        # ---autosize labels---
+        # import
         self.button_ImportObjFile.adjustSize()
         self.button_ImportObjFile.clicked.connect(self.importObjFile)
-        self.button_PerformSubdivision.adjustSize()
+        self.label_ObjFileName.adjustSize()
 
+        # subdivision
+        self.label_2.adjustSize()
+        self.label_3.adjustSize()
+        
+        self.button_PerformSubdivision.adjustSize()
         self.button_PerformSubdivision.clicked.connect(self.subObject)
 
-        #scale
+        # scale
         self.button_PerformScale.adjustSize()
         self.label_4.adjustSize()
         self.label_5.adjustSize()
 
         self.button_PerformScale.clicked.connect(self.scaleObject)
 
-        #manipulate
+        # manipulate
         self.button_PerformMani.adjustSize()
         self.label_6.adjustSize()
         self.label_7.adjustSize()
         self.label_8.adjustSize()
 
         self.button_PerformMani.clicked.connect(self.maniPoint)
+        
 
 
         
 
     def importObjFile(self):
+        #! difference filename fileName?
         filename = self.openFileNameDialog()
 
     def openFileNameDialog(self):
         fileName = QFileDialog.getOpenFileName(self.button_ImportObjFile.parent(),"Import OBJ File", "","All Files (*);;Obj Files (*.obj)")
-        
+        self.mcaller.createMesh()
         # parse out file name
         fileName = os.path.basename(fileName[0])
         print(fileName)
         self.label_ObjFileName.setText(fileName)
 
-        #self.mcaller.showObject()
-        self.mcaller.updateObject()
+        self.mcaller.showObject()
+        #self.mcaller.updateObject()
 
+        # activate elements to deform the object
+        self.button_PerformSubdivision.setEnabled(True)
+        self.button_PerformScale.setEnabled(True)
+        self.button_PerformMani.setEnabled(True)
+        self.comboBox_TypeOfMani.setEnabled(True)
+        self.comboBox_TypeOfScale.setEnabled(True)
+        self.comboBox_TypeOfSubdivision.setEnabled(True)
+        self.spinBox_NumOfSubdivisions.setEnabled(True)
+        self.spinBox_Point.setEnabled(True)
+        self.spinBox_Pos.setEnabled(True)
+        self.spinBox_Scale.setEnabled(True)
         self.spinBox_Point.setMinimum(0)
         self.spinBox_Point.setMaximum(len(self.mcaller.mesh.pts)-1)
         self.spinBox_Point.setValue(0)
 
-    #scale object (all, x, y or z)
+    # scale object (all, x, y or z)
     def scaleObject(self):
         axyz = self.comboBox_TypeOfScale.currentIndex()
         factor = self.spinBox_Scale.value()
@@ -202,7 +242,7 @@ class Ui_Project2_GUI(object):
         self.mcaller.showObject()
         #self.mcaller.updateObject()
 
-    #subdivide object
+    # subdivide object
     def subObject(self):
         insertAlg = self.comboBox_TypeOfSubdivision.currentIndex()
         insertQuantity = self.spinBox_NumOfSubdivisions.value()
@@ -213,7 +253,7 @@ class Ui_Project2_GUI(object):
         self.spinBox_Point.setMaximum(len(self.mcaller.mesh.pts)-1)
         self.spinBox_Point.setValue(0)
     
-    #manipulate one point
+    # manipulate one point
     def maniPoint(self):
         axyz = self.comboBox_TypeOfMani.currentIndex()
         factor = self.spinBox_Pos.value()
@@ -222,7 +262,7 @@ class Ui_Project2_GUI(object):
         self.mcaller.showObject()
 
 
-
+# main
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
