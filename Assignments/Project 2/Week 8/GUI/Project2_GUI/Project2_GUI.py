@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QAp
 
 sys.path.append(".")
 from modellingCaller import ModellingCaller
+import readObj
 
 class Ui_Project2_GUI(object):
 
@@ -201,22 +202,23 @@ class Ui_Project2_GUI(object):
         self.button_PerformMani.clicked.connect(self.maniPoint)
         
 
-
-        
-
     def importObjFile(self):
-        #! difference filename fileName?
         filename = self.openFileNameDialog()
+        readObj.readObj.ReadBlend(self, str(filename))
+
 
     def openFileNameDialog(self):
-        fileName = QFileDialog.getOpenFileName(self.button_ImportObjFile.parent(),"Import OBJ File", "","All Files (*);;Obj Files (*.obj)")
+        fileName = QFileDialog.getOpenFileName(self.button_ImportObjFile.parent(),"Import OBJ File", "","OBJ Files (*.obj);;All Files (*)")
+        
         self.mcaller.createMesh()
         # parse out file name
+        filePath = fileName[0]
         fileName = os.path.basename(fileName[0])
         print(fileName)
         self.label_ObjFileName.setText(fileName)
 
         self.mcaller.showObject()
+        #self.mcaller.showObject()
         #self.mcaller.updateObject()
 
         # activate elements to deform the object
@@ -235,6 +237,9 @@ class Ui_Project2_GUI(object):
         self.spinBox_Point.setValue(0)
 
     # scale object (all, x, y or z)
+        return filePath
+
+    #scale object (all, x, y or z)
     def scaleObject(self):
         axyz = self.comboBox_TypeOfScale.currentIndex()
         factor = self.spinBox_Scale.value()

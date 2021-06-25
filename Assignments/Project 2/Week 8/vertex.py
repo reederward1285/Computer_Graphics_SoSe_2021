@@ -1,4 +1,4 @@
-class Vertex:    
+class vertex:    
     def __init__(self, x, y, z):
         self.xyz = [float(x), float(y), float(z)]
         #print("Vertex created")

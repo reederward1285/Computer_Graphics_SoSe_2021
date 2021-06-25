@@ -1,6 +1,6 @@
 import math
 from triangle import Triangle
-from vertex import Vertex
+import vertex
 
 class Mesh:    
     def __init__(self, pts, tris):
@@ -42,7 +42,7 @@ class Mesh:
         # output results
         print("Valence list (First vertex has index 0):")
         for i in range(0, len(self.pts)):
-            print("  Vertex ", i, ": ", self.valences[i])
+            print("  vertex ", i, ": ", self.valences[i])
         print("Neighbor triangles of triangles (First triangle has index 0): ")
         for i in range(0, len(self.tris)):
             print("  Triangle ", i,  ": ", end=" ")
@@ -82,8 +82,8 @@ class Mesh:
     def loopSubdivisionAlg(self):
         """loopSubdivisionAlg calculates edge points according to Mr. Loop's method
         """
-        # variable for new Vertex
-        d = Vertex(0, 0, 0)
+        # variable for new vertex
+        d = vertex(0, 0, 0)
         oldPtsSize = len(self.pts)
         # matrix indices of iv
         mv = [[1, 2, 0], [2, 0, 1], [0, 1, 2]]
@@ -100,7 +100,7 @@ class Mesh:
                 # calculate edge point if index of triangle is smaller than index of neighbor
                 # otherwise the edge point is already calculated
                 if(i<t.it[j]):
-                    # find Vertex in neighbor Triangle that is not in Triangle t
+                    # find vertex in neighbor Triangle that is not in Triangle t
                     test1 = t.iv[i1]==n.iv[0] or t.iv[i2]==n.iv[0]
                     test2 = t.iv[i1]==n.iv[1] or t.iv[i2]==n.iv[1]
                     test3 = t.iv[i1]==n.iv[2] or t.iv[i2]==n.iv[2]
@@ -134,7 +134,7 @@ class Mesh:
             print("beta ", beta)
             self.pts[i] = self.pts[i]*beta
             # self.pts[i] *= beta # v_i *= beta(n)
-        # Vertex mask
+        # vertex mask
         # for first second and third point of every triangle
         for i in range(0, len(self.tris)): 
             self.pts[self.tris[i].iv[0]] +=  ( ( (1.0 - self.beta_n(self.valences[self.tris[i].iv[0]])) / (self.valences[self.tris[i].iv[0]])) * ((self.pts[self.tris[i].ie[1]]+self.pts[self.tris[i].ie[2]]) / 2.0))
@@ -291,11 +291,11 @@ class Mesh:
             factor(int): factor to calculate scalefactor
         Return:
             float: scalefactor
-            Vertex: center
+            vertex: center
         """
         if (factor > 0):
             scalefactor = factor/100.0 -1
-            center = Vertex(0, 0, 0)
+            center = vertex(0, 0, 0)
             for v in self.pts:
                 center += v
             center = center / len(self.pts)            

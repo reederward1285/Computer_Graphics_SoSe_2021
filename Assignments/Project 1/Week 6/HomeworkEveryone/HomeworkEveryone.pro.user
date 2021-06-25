@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.1, 2021-05-31T09:27:13. -->
+<!-- Written by QtCreator 4.13.1, 2021-06-24T16:50:50. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -325,9 +325,8 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">HomeworkEveryone2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Dropbox/Repos/Computer_Graphics_SoSe_2021/Assignments/Week 6/HomeworkEveryone/HomeworkEveryone.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/Dropbox/Repos/Computer_Graphics_SoSe_2021/Assignments/Week 6/HomeworkEveryone/HomeworkEveryone.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/Dropbox/Repos/Computer_Graphics_SoSe_2021/Assignments/Project 1/Week 6/HomeworkEveryone/HomeworkEveryone.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/Dropbox/Repos/Computer_Graphics_SoSe_2021/Assignments/Project 1/Week 6/HomeworkEveryone/HomeworkEveryone.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>

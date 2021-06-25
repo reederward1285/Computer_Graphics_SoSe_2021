@@ -1,5 +1,5 @@
 from triangle import Triangle
-from vertex import Vertex
+from vertex import vertex
 from mesh import Mesh
 
 import numpy as np
@@ -20,25 +20,25 @@ class ModellingCaller:
         #! must be replaced by importcode
 
         # create points and safe in list
-        self.point0 = Vertex(0.0, 0.0, 0.0)
+        point0 = vertex(0.0, 0.0, 0.0)
         self.points.append(self.point0)
-        self.point1 = Vertex(8.0, 0.0, 0.0)
+        point1 = vertex(8.0, 0.0, 0.0)
         self.points.append(self.point1)
-        self.point2 = Vertex(0.0, 8.0, 0.0)
+        point2 = vertex(0.0, 8.0, 0.0)
         self.points.append(self.point2)
-        self.point3 = Vertex(0.0, 0.0, 8.0)
+        point3 = vertex(0.0, 0.0, 8.0)
         self.points.append(self.point3)
         for point in self.points:
             point.printXYZ()
 
         # create triangles and safe in list
-        self.tri0 = Triangle(0, 1, 3)
+        tri0 = Triangle(0, 1, 3)
         self.tris.append(self.tri0)
-        self.tri1 = Triangle(1, 2, 3)
+        tri1 = Triangle(1, 2, 3)
         self.tris.append(self.tri1)
-        self.tri2 = Triangle(2, 0, 3)
+        tri2 = Triangle(2, 0, 3)
         self.tris.append(self.tri2)
-        self.tri3 = Triangle(2, 1, 0)
+        tri3 = Triangle(2, 1, 0)
         self.tris.append(self.tri3)    
         for tri in self.tris:
             tri.printIV()
