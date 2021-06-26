@@ -14,6 +14,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 from PyQt5 import QtCore, QtWidgets
+from  PyQt5.QtWidgets import QSizePolicy
 import sys
 
 
@@ -21,7 +22,10 @@ class ModellingCaller(FigureCanvas):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = plt.figure(figsize=(6,6))
         self.axes = fig.add_subplot(111, projection='3d')
-
+        
+        self.axes.set_xlabel('X axis')
+        self.axes.set_ylabel('Y axis')
+        self.axes.set_zlabel('Z axis')
 
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
@@ -173,6 +177,8 @@ class ModellingCaller(FigureCanvas):
     def showObject(self):
         """show an object in a coordinate system
         """
+
+        plt.clf()
 
         #calculate axis length
         h = self.highestPoint()

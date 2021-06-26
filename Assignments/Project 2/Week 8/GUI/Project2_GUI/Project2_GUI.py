@@ -12,7 +12,7 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         
 
     def setupUi(self, Project2_GUI):
-        self.mcaller = ModellingCaller()
+        #self.mcaller = ModellingCaller()
         
         # window
         Project2_GUI.setObjectName("Project2_GUI")
@@ -127,20 +127,10 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         self.spinBox_Point.setEnabled(False)
 
         # modellCaller
-        self.modellCaller = ModellingCaller(Project2_GUI, width=5, height=4, dpi=100)
-        self.modellCaller.move(10, 30)
-        self.modellCaller.setGeometry(QtCore.QRect(10, 300, 1360, 650))
+        self.mcaller = ModellingCaller(Project2_GUI)
+        self.mcaller.move(10, 30)
+        self.mcaller.setGeometry(QtCore.QRect(10, 300, 1360, 650))
 
-        # test add reactangle
-       # self.reactangleTest = QtWidgets.QPushButton(Project2_GUI)
-        #self.reactangleTest.setGeometry(QtCore.QRect(10, 300, 1360, 650)) # Perfect scale
-       # self.reactangleTest.setObjectName("Do I fit?")
-
-        # Central widget
-        #.self.setCentralWidget(self.ModellingCaller)
-
-
-        
 
         self.retranslateUi(Project2_GUI)
         QtCore.QMetaObject.connectSlotsByName(Project2_GUI)
@@ -220,8 +210,8 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         self.mcaller.ReadBlend(str(filename))
 
         self.mcaller.showObject()
-        #self.mcaller.showObject()
-        #self.mcaller.updateObject()
+        # self.mcaller.showObject()
+        # self.mcaller.updateObject()
 
         # activate elements to deform the object
         self.button_PerformSubdivision.setEnabled(True)
