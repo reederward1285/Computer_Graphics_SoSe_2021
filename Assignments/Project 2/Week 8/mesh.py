@@ -131,7 +131,7 @@ class Mesh:
         for i in range(0, oldPtsSize):
             n = self.valences[i] # n = valence of v_i
             beta = self.beta_n( n)
-            print("beta ", beta)
+            #print("beta ", beta)
             self.pts[i] = self.pts[i]*beta
             # self.pts[i] *= beta # v_i *= beta(n)
         # vertex mask

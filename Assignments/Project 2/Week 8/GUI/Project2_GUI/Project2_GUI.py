@@ -205,17 +205,6 @@ class Ui_Project2_GUI(object):
         filename = self.openFileNameDialog()
         self.mcaller.ReadBlend(str(filename))
 
-
-    def openFileNameDialog(self):
-        fileName = QFileDialog.getOpenFileName(self.button_ImportObjFile.parent(),"Import OBJ File", "","OBJ Files (*.obj);;All Files (*)")
-        
-        self.mcaller.createMesh()
-        # parse out file name
-        filePath = fileName[0]
-        fileName = os.path.basename(fileName[0])
-        print(fileName)
-        self.label_ObjFileName.setText(fileName)
-
         self.mcaller.showObject()
         #self.mcaller.showObject()
         #self.mcaller.updateObject()
@@ -234,6 +223,19 @@ class Ui_Project2_GUI(object):
         self.spinBox_Point.setMinimum(0)
         self.spinBox_Point.setMaximum(len(self.mcaller.mesh.pts)-1)
         self.spinBox_Point.setValue(0)
+
+
+    def openFileNameDialog(self):
+        fileName = QFileDialog.getOpenFileName(self.button_ImportObjFile.parent(),"Import OBJ File", "","OBJ Files (*.obj);;All Files (*)")
+        
+        self.mcaller.createMesh()
+        # parse out file name
+        filePath = fileName[0]
+        fileName = os.path.basename(fileName[0])
+        print(fileName)
+        self.label_ObjFileName.setText(fileName)
+
+        
 
     # scale object (all, x, y or z)
         return filePath

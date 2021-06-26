@@ -18,23 +18,31 @@ class ModellingCaller:
     def ReadBlend(self, fname):
         """imports an OBJ file, and populates tris and points
         """
+        print("filename",fname)
         file = open(fname, "r")
 
         currentLine = file.readline()
 
         while (currentLine):
+
+
             # parse out numbers from the string
-            numbers = re.findall(r'\d+(?:\.\d+)?', currentLine)
+            numbers = re.findall(r'-?\d+(?:\.\d+)?', currentLine)
 
             # find 'v' character and populate vertex information
-            if (currentLine.find("v", 0, len(currentLine)) != -1):
+            #currentLine = char(currentLine)
+            if (currentLine[0] == "v" and  currentLine[1] == " "):
+
+
+                #print(currentLine[0])
                 # make a new vertex object out of it
                 self.newVertex = vertex(float(numbers[0]), float(numbers[1]), float(numbers[2]))
                 self.points.append(self.newVertex)
                                 
             # find 'f' character and populate face information
-            elif (currentLine.find("f", 0, len(currentLine)) != -1):
-                self.newTriangle = Triangle(int(numbers[0]), int(numbers[1]), int(numbers[2]))
+            elif (currentLine[0] == "f"):
+                #print(numbers)
+                self.newTriangle = Triangle(int(numbers[0])-1, int(numbers[3])-1, int(numbers[6])-1)
                 self.tris.append(self.newTriangle)
 
             currentLine = file.readline()
