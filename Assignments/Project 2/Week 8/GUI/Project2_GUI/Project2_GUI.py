@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QAp
 sys.path.append(".")
 from modellingCaller import ModellingCaller
 
-class Ui_Project2_GUI(object):
+class Ui_Project2_GUI(QtWidgets.QMainWindow):
 
         
 
@@ -125,6 +125,20 @@ class Ui_Project2_GUI(object):
         self.spinBox_Point.setMaximum(-1)
         self.spinBox_Point.setValue(-1)
         self.spinBox_Point.setEnabled(False)
+
+        # modellCaller
+        self.modellCaller = ModellingCaller(Project2_GUI, width=5, height=4, dpi=100)
+        self.modellCaller.move(10, 30)
+        self.modellCaller.setGeometry(QtCore.QRect(10, 300, 1360, 650))
+
+        # test add reactangle
+       # self.reactangleTest = QtWidgets.QPushButton(Project2_GUI)
+        #self.reactangleTest.setGeometry(QtCore.QRect(10, 300, 1360, 650)) # Perfect scale
+       # self.reactangleTest.setObjectName("Do I fit?")
+
+        # Central widget
+        #.self.setCentralWidget(self.ModellingCaller)
+
 
         
 

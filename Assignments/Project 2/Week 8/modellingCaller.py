@@ -2,16 +2,31 @@ from triangle import Triangle
 from vertex import vertex
 from mesh import Mesh
 import re
-
 import numpy as np
+
+import matplotlib
+matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib import style
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 
-class ModellingCaller:
+from PyQt5 import QtCore, QtWidgets
+import sys
 
-    def __init__(self):
+
+class ModellingCaller(FigureCanvas):
+    def __init__(self, parent=None, width=5, height=4, dpi=100):
+        fig = plt.figure(figsize=(6,6))
+        self.axes = fig.add_subplot(111, projection='3d')
+
+
+        FigureCanvas.__init__(self, fig)
+        self.setParent(parent)
+
+        # internal modellingCaller values
         self.tris = []
         self.points = []
 
@@ -166,8 +181,8 @@ class ModellingCaller:
         h = h + d
         l = l - d
 
-        fig = plt.figure(figsize=(6,6))
-        ax = fig.add_subplot(111, projection='3d')
+        #self.fig = plt.figure(figsize=(6,6))
+        ax = self.figure.add_subplot(111, projection='3d')
 
         for i in range(0, len(self.mesh.tris)):
 
@@ -200,7 +215,7 @@ class ModellingCaller:
             ax.set_ylabel('Y axis')
             ax.set_zlabel('Z axis')
             
-        plt.show()
+        plt.draw()
 
     def highestPoint(self):
         """find highest point
