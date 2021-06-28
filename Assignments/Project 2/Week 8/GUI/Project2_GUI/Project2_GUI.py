@@ -27,6 +27,11 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         self.label_ObjFileName.setGeometry(QtCore.QRect(150, 15, 101, 16))
         self.label_ObjFileName.setObjectName("label_ObjFileName")
 
+        # export
+        self.button_SaveObjFile = QtWidgets.QPushButton(Project2_GUI)
+        self.button_SaveObjFile.setGeometry(QtCore.QRect(450, 10, 80, 22))
+        self.button_SaveObjFile.setObjectName("button_SaveObjFile")
+
         # subdivision
         self.button_PerformSubdivision = QtWidgets.QPushButton(Project2_GUI)
         self.button_PerformSubdivision.setGeometry(QtCore.QRect(220, 220, 80, 22))
@@ -139,9 +144,12 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         _translate = QtCore.QCoreApplication.translate
         Project2_GUI.setWindowTitle(_translate("Project2_GUI", "Project2_GUI"))
 
-        #import
+        # import
         self.button_ImportObjFile.setText(_translate("Project2_GUI", "Import"))
         self.label_ObjFileName.setText(_translate("Project2_GUI", "[No File Chosen]"))
+
+        # export
+        self.button_SaveObjFile.setText(_translate("Project2_GUI", "Save"))
 
         # subdivision
         self.button_PerformSubdivision.setText(_translate("Project2_GUI", "Perform Subdivision"))
@@ -181,6 +189,10 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         self.button_ImportObjFile.adjustSize()
         self.button_ImportObjFile.clicked.connect(self.importObjFile)
         self.label_ObjFileName.adjustSize()
+
+        # export
+        self.button_SaveObjFile.adjustSize()
+        self.button_SaveObjFile.clicked.connect(self.saveFileDialog)
 
         # subdivision
         self.label_2.adjustSize()
@@ -238,11 +250,20 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         fileName = os.path.basename(fileName[0])
         print(fileName)
         self.label_ObjFileName.setText(fileName)
-
-        
-
-    # scale object (all, x, y or z)
         return filePath
+
+    def saveFileDialog(self):
+        name = QFileDialog.getSaveFileName(self, 'Save File', '.', "(*.OBJ)")
+        
+        # gather text info to put into the file
+        text = self.mcaller.exportToOBJ()
+
+        # abort if nothing to save
+        if (text != ""):
+            # write obj file information into the file
+            file = open(name[0] + ".obj", 'w')
+            file.write(text)
+            file.close()
 
     #scale object (all, x, y or z)
     def scaleObject(self):
