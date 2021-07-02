@@ -12,7 +12,6 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         
 
     def setupUi(self, Project2_GUI):
-        #self.mcaller = ModellingCaller()
         
         # window
         Project2_GUI.setObjectName("Project2_GUI")
