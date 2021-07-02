@@ -34,6 +34,17 @@ class ModellingCaller(FigureCanvas):
         self.tris = []
         self.points = []
 
+    def exportToOBJ(self):
+        output = ""
+
+        for item in self.points:
+            output += "v " + str(item.xyz[0]) + " " + str(item.xyz[1]) + " " + str(item.xyz[2]) + "\r\n"
+
+        for item in self.tris:
+            output += "f " + str(item.iv[0]) + "/1/1 " + str(item.iv[1]) + "/1/1 " + str(item.iv[2]) + "/1/1 \r\n"
+
+        return output
+
     def ReadBlend(self, fname):
         """imports an OBJ file, and populates tris and points
         """
