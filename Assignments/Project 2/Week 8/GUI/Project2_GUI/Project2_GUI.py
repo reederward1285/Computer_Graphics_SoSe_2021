@@ -252,7 +252,7 @@ class Ui_Project2_GUI(QtWidgets.QMainWindow):
         return filePath
 
     def saveFileDialog(self):
-        name = QFileDialog.getSaveFileName(self, 'Save File', '.', "(*.OBJ)")
+        name = QFileDialog.getSaveFileName(self, 'Save File')
         
         # gather text info to put into the file
         text = self.mcaller.exportToOBJ()
