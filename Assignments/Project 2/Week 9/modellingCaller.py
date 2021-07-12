@@ -40,11 +40,9 @@ class ModellingCaller(FigureCanvas):
         output = ""
 
         for item in self.mesh.pts:
-            #output += "v " + str(item.xyz[0]) + " " + str(item.xyz[1]) + " " + str(item.xyz[2]) + "\r\n"
             output += "v " + str(item.xyz[0]) + " " + str(item.xyz[1]) + " " + str(item.xyz[2]) + "\r"
 
         for item in self.mesh.tris:
-            #output += "f " + str(item.iv[0]) + "/1/1 " + str(item.iv[1]) + "/1/1 " + str(item.iv[2]) + "/1/1 \r\n"
             output += "f " + str(item.iv[0]+1) + " " + str(item.iv[1]+1) + " " + str(item.iv[2]+1) + " \r"
 
         return output
@@ -58,24 +56,18 @@ class ModellingCaller(FigureCanvas):
         currentLine = file.readline()
 
         while (currentLine):
-
-
-            # parse out numbers from the string
+            # parse out numbers from the string using Regex pattern language
+            # (from the re package)
             numbers = re.findall(r'-?\d+(?:\.\d+)?', currentLine)
 
             # find 'v' character and populate vertex information
-            #currentLine = char(currentLine)
-            if (currentLine[0] == "v" and  currentLine[1] == " "):
-
-
-                #print(currentLine[0])
+            if (currentLine[0] == "v" and currentLine[1] == " "):
                 # make a new vertex object out of it
                 self.newVertex = vertex(float(numbers[0]), float(numbers[1]), float(numbers[2]))
                 self.points.append(self.newVertex)
                                 
             # find 'f' character and populate face information
             elif (currentLine[0] == "f"):
-                #print(numbers)
                 self.newTriangle = Triangle(int(numbers[0])-1, int(numbers[3])-1, int(numbers[6])-1)
                 self.tris.append(self.newTriangle)
 
@@ -90,8 +82,6 @@ class ModellingCaller(FigureCanvas):
     def createMesh(self):
         """create a mesh
         """
-
-
         self.mesh = Mesh(self.points, self.tris)
 
     def scaleMesh(self, factor, axyz):
@@ -139,7 +129,6 @@ class ModellingCaller(FigureCanvas):
                     self.mesh.connectAlg()
                     self.mesh.loopSubdivisionAlg()
                 self.mesh.normalVector()
-                #print("loop")
             elif(self.insertAlg == 0):
                 for i in range(0, iQ):
                     print(" ")
@@ -147,7 +136,6 @@ class ModellingCaller(FigureCanvas):
                     self.mesh.connectAlg()
                     self.mesh.linearSubdivisionAlg()
                 self.mesh.normalVector()
-                #print("linear")
             else:
                 print("INCORRECT INPUT")
 
