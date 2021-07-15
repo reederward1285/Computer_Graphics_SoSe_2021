@@ -7,6 +7,8 @@ from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QAp
 sys.path.append(".")
 from modellingCaller import ModellingCaller
 
+# Have to be opened in directory: C:\Users\x-zoc\Google Drive\Medieninformatik\Semester_4\Computer_Graphics\GitHub\Assignments\Project 2\Week 9
+
 class Ui_Project2_GUI(QtWidgets.QMainWindow):
 
         
